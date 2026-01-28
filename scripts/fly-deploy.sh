@@ -168,4 +168,4 @@ NODE
 echo "\nVisit your newly deployed app at https://$APP_NAME.fly.dev/"
 echo "You may need to wait a minute or so before the website is live."
 echo "\nNext steps:"
-echo "- Deploy an app: gamedev apps deploy <AppName> --target $APP_NAME"
+echo "- Deploy an app: npm run deploy:app -- <AppName> --target $APP_NAME"

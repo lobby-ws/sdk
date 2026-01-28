@@ -9,6 +9,7 @@
     "dev": "gamedev dev",
     "build": "gamedev apps build --all",
     "deploy:fly": "bash scripts/fly-deploy.sh",
+    "deploy:app": "gamedev apps deploy",
     "update:engine": "bash scripts/update-engine.sh",
     "typecheck": "tsc --noEmit"
   },

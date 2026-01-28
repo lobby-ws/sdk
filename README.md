@@ -13,6 +13,7 @@ npm i && npm run dev
 1. Find your admin code in `.env` ADMIN_CODE=
 2. In the chat box, type `/admin <admin code>`
 3. Tell your coding agent: "Create a new app and make a tree"
+   - _tip_: point your agent to /docs/scripts/ api reference for extra accuracy
 4. Find the "Add" pane in the menu to bring your Tree app in the scene
 
 ## Deploying a site
@@ -40,14 +41,34 @@ Deploy your world server with Fly.io (free-tier friendly, global edge VMs). If y
   - Visit: `https://<app>.fly.dev/`
   - Note: you may need to wait a minute or so before the website is live.
 
-1. Deploy your apps
+## Deploy your apps
 
 - Use the target added by the deploy script:
-  - `gamedev apps deploy <AppName> --target <app>`
-- Or run continuous dev against a remote world:
-  - `gamedev dev --target <app>`
+  - `npm run deploy:app -- <AppName> --target <app>`
 
-1. Update the deployed engine later
+## Updating the engine
 
-- Pull the latest engine image and roll it out:
+- To update the engine on your live site:
   - `npm run update:engine`
+- Update your engine & sdk locally
+  - `npm install gamedev@latest`
+
+## Live sync to your deployed world
+
+Sync your local project to a remote world in real time (no per‑app deploys):
+
+- Prereqs:
+  - Your Fly app target exists in `.lobby/targets.json` (created by `npm run deploy:fly`).
+  - Secrets are set on the Fly app: `WORLD_ID`, `ADMIN_CODE`, `DEPLOY_CODE`.
+
+- Start live sync:
+  - `npm run dev -- --target <app>`
+
+- What it does:
+  - Runs the app-server against your remote world (`worldUrl` in the target).
+  - Watches `apps/**`, `shared/**`, `assets/**`, and `world.json`.
+  - Pushes changes in ~1–2 seconds without page refresh.
+
+- Notes:
+  - Use for dev/staging only — it can overwrite world state.
+  - For production, prefer `npm run deploy:app -- <AppName> --target <app>`.
