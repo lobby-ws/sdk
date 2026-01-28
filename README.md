@@ -10,11 +10,9 @@ npm i && npm run dev
 
 ## Start building
 
-1. Find your admin code in `.env` ADMIN_CODE=
-2. In the chat box, type `/admin <admin code>`
-3. Tell your coding agent: "Create a new app and make a tree"
+1. Tell your coding agent: "Create a new app and make a tree"
    - _tip_: point your agent to /docs/scripts/ api reference for extra accuracy
-4. Find the "Add" pane in the menu to bring your Tree app in the scene
+2. Find the "Add" pane in the menu to bring your Tree app in the scene
 
 ## Deploying a site
 
