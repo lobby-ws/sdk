@@ -44,10 +44,6 @@ while true; do
   read -rp "ADMIN_CODE: " ADMIN_CODE || true
   [[ -n "${ADMIN_CODE:-}" ]] && break || echo "ADMIN_CODE is required."
 done
-while true; do
-  read -rp "DEPLOY_CODE: " DEPLOY_CODE || true
-  [[ -n "${DEPLOY_CODE:-}" ]] && break || echo "DEPLOY_CODE is required."
-done
 read -rp "JWT_SECRET (optional): " JWT_SECRET || true
 
 # Ensure fly.toml exists and set app name + region
@@ -121,7 +117,6 @@ fi
 SECRETS_TO_SET=()
 [[ -n "${WORLD_ID:-}" ]] && SECRETS_TO_SET+=("WORLD_ID=$WORLD_ID")
 [[ -n "${ADMIN_CODE:-}" ]] && SECRETS_TO_SET+=("ADMIN_CODE=$ADMIN_CODE")
-[[ -n "${DEPLOY_CODE:-}" ]] && SECRETS_TO_SET+=("DEPLOY_CODE=$DEPLOY_CODE")
 [[ -n "${JWT_SECRET:-}" ]] && SECRETS_TO_SET+=("JWT_SECRET=$JWT_SECRET")
 
 if (( ${#SECRETS_TO_SET[@]} > 0 )); then
@@ -138,7 +133,7 @@ flyctl deploy --app "$APP_NAME" --image ghcr.io/lobby-ws/gamedev:main --ha=false
 
 # Auto-add/update target in .lobby/targets.json
 echo "Updating .lobby/targets.json with target '$APP_NAME'..."
-export APP_NAME DOMAIN WORLD_ID ADMIN_CODE DEPLOY_CODE
+export APP_NAME DOMAIN WORLD_ID ADMIN_CODE
 node - <<'NODE'
 const fs = require('fs');
 const path = require('path');
@@ -146,7 +141,6 @@ const appName = process.env.APP_NAME;
 const domain = process.env.DOMAIN;
 const worldId = process.env.WORLD_ID;
 const adminCode = process.env.ADMIN_CODE;
-const deployCode = process.env.DEPLOY_CODE;
 const dir = path.join('.lobby');
 const file = path.join(dir, 'targets.json');
 let data = {};
@@ -157,7 +151,6 @@ data[appName] = {
   worldUrl: `https://${domain}`,
   worldId: worldId,
   adminCode: adminCode,
-  deployCode: deployCode,
   confirm: true
 };
 fs.mkdirSync(dir, { recursive: true });

@@ -1,5 +1,5 @@
 {
-  "name": "project",
+  "name": "sdk",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,8 +7,8 @@
     "init": "gamedev init",
     "help": "gamedev help",
     "dev": "gamedev dev",
-    "build": "gamedev apps build --all",
     "apps:new": "gamedev apps new",
+    "build": "gamedev apps build --all",
     "deploy:fly": "bash scripts/fly-deploy.sh",
     "deploy:app": "gamedev apps deploy",
     "update:engine": "bash scripts/update-engine.sh",
@@ -16,6 +16,7 @@
     "hyp:extract": "node scripts/extract-hyp.mjs"
   },
   "devDependencies": {
-    "gamedev": "^0.0.9"
+    "gamedev": "^0.0.11",
+    "typescript": "^5.6.3"
   }
 }

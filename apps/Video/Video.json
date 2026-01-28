@@ -1,19 +1,9 @@
 {
-  "author": null,
-  "url": null,
-  "desc": null,
-  "preload": false,
-  "public": false,
-  "locked": false,
-  "frozen": false,
-  "unique": false,
-  "disabled": false,
-  "scene": false,
   "scriptFormat": "module",
-  "model": "assets/Video.glb",
   "image": {
     "url": "assets/Video.png"
   },
+  "model": "assets/Video.glb",
   "props": {
     "width": 0,
     "height": 2,
@@ -28,5 +18,12 @@
       "type": "video",
       "url": "assets/Video.mp4"
     }
-  }
+  },
+  "preload": false,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": false,
+  "scene": false,
+  "disabled": false
 }

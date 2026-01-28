@@ -1,19 +1,9 @@
 {
-  "author": null,
-  "url": null,
-  "desc": null,
-  "preload": false,
-  "public": false,
-  "locked": false,
-  "frozen": false,
-  "unique": false,
-  "disabled": false,
-  "scene": false,
   "scriptFormat": "module",
-  "model": "assets/Text.glb",
   "image": {
     "url": "assets/Text.png"
   },
+  "model": "assets/Text.glb",
   "props": {
     "width": 200,
     "height": 200,
@@ -24,5 +14,12 @@
     "transparent": false,
     "lit": false,
     "shadows": true
-  }
+  },
+  "preload": false,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": false,
+  "scene": false,
+  "disabled": false
 }

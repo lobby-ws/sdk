@@ -32,7 +32,7 @@ Deploy your world server with Fly.io (free-tier friendly, global edge VMs). If y
   - App name (be unique; names are global on Fly)
   - Primary region (e.g., `iad`)
   - Memory (start with 1024 MB; raise if you see OOM)
-  - WORLD_ID, ADMIN_CODE, DEPLOY_CODE, JWT_SECRET (secrets)
+  - WORLD_ID, ADMIN_CODE, JWT_SECRET (secrets)
 - The script will:
   - Configure `fly.toml` and fill public URLs for your app (`https://<app>.fly.dev`)
   - Initialize the Fly app (no deploy), set secrets, then deploy the engine image
@@ -59,7 +59,7 @@ Sync your local project to a remote world in real time (no per‑app deploys):
 
 - Prereqs:
   - Your Fly app target exists in `.lobby/targets.json` (created by `npm run deploy:fly`).
-  - Secrets are set on the Fly app: `WORLD_ID`, `ADMIN_CODE`, `DEPLOY_CODE`.
+  - Secrets are set on the Fly app: `WORLD_ID`, `ADMIN_CODE`
 
 - Start live sync:
   - `npm run dev -- --target <app>`
