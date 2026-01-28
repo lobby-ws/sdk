@@ -1,0 +1,52 @@
+{
+  "formatVersion": 2,
+  "settings": {
+    "title": null,
+    "desc": null,
+    "image": null,
+    "avatar": null,
+    "customAvatars": false,
+    "voice": "spatial",
+    "rank": 0,
+    "playerLimit": 0,
+    "ao": true
+  },
+  "spawn": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "entities": [
+    {
+      "id": "NAK3oX4huU",
+      "blueprint": "$scene",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": false,
+      "props": {},
+      "state": {}
+    }
+  ]
+}

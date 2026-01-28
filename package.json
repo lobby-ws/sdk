@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "init": "gamedev init",
     "help": "gamedev help",
     "dev": "gamedev dev",
     "build": "gamedev apps build --all",
@@ -12,6 +13,6 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "gamedev": "^0.0.8"
+    "gamedev": "^0.0.9"
   }
 }
