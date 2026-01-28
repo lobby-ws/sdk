@@ -8,6 +8,7 @@
     "help": "gamedev help",
     "dev": "gamedev dev",
     "build": "gamedev apps build --all",
+    "apps:new": "gamedev apps new",
     "deploy:fly": "bash scripts/fly-deploy.sh",
     "deploy:app": "gamedev apps deploy",
     "update:engine": "bash scripts/update-engine.sh",
