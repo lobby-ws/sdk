@@ -16,6 +16,14 @@ npm i && npm run dev
    - _tip_: point your agent to /docs/scripts/ api reference for extra accuracy
 4. Find the "Add" pane in the menu to bring your Tree app in the scene
 
+## Agent Skill
+
+The SDK includes an [Agent Skill](https://agentskills.io) for building apps in `skills/building-hyperfy-apps/`.
+
+Copy to `~/.claude/skills/` (global) or `.claude/skills/` (project) for automatic discovery. For more on skill installation, see [vercel-labs/skills](https://github.com/vercel-labs/skills).
+
+Triggers on: "build an app", "players fall through", "set up multiplayer", "fix physics".
+
 ## Deploying a site
 
 Deploy your world server with Fly.io (free-tier friendly, global edge VMs). If you’ve never used Fly.io, follow these steps — no prior knowledge needed.
