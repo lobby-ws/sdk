@@ -14,6 +14,21 @@ npm i && npm run dev
    - _tip_: point your agent to /docs/scripts/ api reference for extra accuracy
 2. Find the "Add" pane in the menu to bring your Tree app in the scene
 
+## Agent Skill
+
+The SDK includes an [Agent Skill](https://agentskills.io) for building Hyperfy apps in `.claude/skills/building-hyperfy-apps/`.
+
+The skill is automatically discovered when using Claude Code in this repo. It provides:
+
+- Node type reference (prims, groups, images, audio, video, UI, particles)
+- Physics and collision patterns
+- Multiplayer networking templates
+- Common mistake detection and fixes
+
+**Triggers on:** "build a Hyperfy app", "add a node", "fix physics", "players fall through", "set up multiplayer", "sync state", "objects underground", "why is this laggy"
+
+For more on skill installation, see [vercel-labs/skills](https://github.com/vercel-labs/skills).
+
 ## Deploying a site
 
 Deploy your world server with Fly.io (free-tier friendly, global edge VMs). If you’ve never used Fly.io, follow these steps — no prior knowledge needed.
