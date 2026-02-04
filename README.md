@@ -16,11 +16,18 @@ npm i && npm run dev
 
 ## Agent Skill
 
-The SDK includes an [Agent Skill](https://agentskills.io) for building apps in `skills/building-hyperfy-apps/`.
+The SDK includes an [Agent Skill](https://agentskills.io) for building Hyperfy apps in `.claude/skills/building-hyperfy-apps/`.
 
-Copy to `~/.claude/skills/` (global) or `.claude/skills/` (project) for automatic discovery. For more on skill installation, see [vercel-labs/skills](https://github.com/vercel-labs/skills).
+The skill is automatically discovered when using Claude Code in this repo. It provides:
 
-Triggers on: "build an app", "players fall through", "set up multiplayer", "fix physics".
+- Node type reference (prims, groups, images, audio, video, UI, particles)
+- Physics and collision patterns
+- Multiplayer networking templates
+- Common mistake detection and fixes
+
+**Triggers on:** "build a Hyperfy app", "add a node", "fix physics", "players fall through", "set up multiplayer", "sync state", "objects underground", "why is this laggy"
+
+For more on skill installation, see [vercel-labs/skills](https://github.com/vercel-labs/skills).
 
 ## Deploying a site
 
