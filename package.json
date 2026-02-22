@@ -14,10 +14,11 @@
     "update": "npm i gamedev@latest && gamedev update",
     "update:engine": "bash scripts/update-engine.sh",
     "typecheck": "tsc --noEmit",
-    "hyp:extract": "node scripts/extract-hyp.mjs"
+    "hyp:extract": "node scripts/extract-hyp.mjs",
+    "world:entities": "node scripts/world-entities.mjs"
   },
   "devDependencies": {
-    "gamedev": "^0.1.7",
+    "gamedev": "latest",
     "typescript": "^5.6.3"
   }
 }
