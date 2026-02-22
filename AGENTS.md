@@ -9,6 +9,22 @@ Apps live in `apps/` and each app folder contains blueprint JSON plus a script e
 Local-first (project files):
 
 - Run `npm run apps:new <AppName>` (creates `apps/<AppName>/` with `index.js` + blueprint)
+- Batch-edit `world.json` entities: `npm run world:entities -- add --template-id <id> --transforms <file>` / `npm run world:entities -- delete --blueprint <name>`
+- To duplicate one app many times (eg, make a forest from one `Tree`), generate many transforms and run `npm run world:entities -- add --template-id <TreeEntityId> --transforms tmp/forest.json --yes`, then delete `tmp/forest.json`
+- See `docs/world-entities-cli.md` for full flags (`--replace`, `--ids`, `--yes`, `--world`)
+- Transform file format for `--transforms` (JSON array):
+  ```json
+  [
+    {
+      "position": [0, 0, 0],
+      "quaternion": [0, 0, 0, 1],
+      "scale": [1, 1, 1],
+      "pinned": false,
+      "props": {},
+      "state": {}
+    }
+  ]
+  ```
 - Put assets in top-level `assets/` and reference them from blueprint JSON for app.config props
 - Run `npm run dev` for hot reload
 
