@@ -76,6 +76,60 @@ player.firstPerson(true)
 setTimeout(() => player.firstPerson(false), 1500)
 ```
 
+### `.replaceAnimations(newEmotes, reset = false)`
+
+Replaces the local player's locomotion animation set (idle/walk/run/etc) with custom clips.
+
+This is useful for style packs, themed movement, or swapping to project-specific mocap clips at runtime.
+
+Only works on the local player and must be called on the client.
+
+- **newEmotes**: object map of animation slots to clip URLs.
+- **reset**: when `true`, reset all slots to defaults first, then apply `newEmotes`.
+
+Supported slots:
+- `idle`
+- `walk`
+- `walkLeft`
+- `walkRight`
+- `walkBack`
+- `run`
+- `runLeft`
+- `runRight`
+- `runBack`
+- `jump`
+- `fall`
+- `fly`
+- `talk`
+
+Legacy uppercase slot names are also accepted (`IDLE`, `WALK`, `RUN`, etc).
+
+Changes are network-synced, so other players will see your updated locomotion set.
+
+Example:
+```js
+const player = world.getPlayer()
+
+// Replace locomotion with custom local/project assets
+player.replaceAnimations(
+  {
+    idle: 'asset://stand-idle.glb',
+    walk: 'asset://walk-forward.glb',
+    walkBack: 'asset://walk-backward.glb',
+    walkLeft: 'asset://strafe-left-walk.glb',
+    walkRight: 'asset://strafe-right-walk.glb',
+    run: 'asset://run-forward.glb',
+    runBack: 'asset://run-backwards.glb',
+    runLeft: 'asset://strafe-left-run.glb',
+    runRight: 'asset://strafe-right-run.glb',
+  },
+  true
+)
+
+// Later, restore default locomotion clips
+player.replaceAnimations({}, true)
+```
+
 ### `.getBoneTransform(boneName)`: Matrix4
 
 Returns a matrix of the bone transform in world space.

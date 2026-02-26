@@ -8,7 +8,7 @@
     "customAvatars": false,
     "voice": "spatial",
     "rank": 0,
-    "playerLimit": 0,
+    "playerLimit": 3,
     "ao": true
   },
   "spawn": {
@@ -26,7 +26,7 @@
   },
   "entities": [
     {
-      "id": "6dBV3vH8pG",
+      "id": "URCeIvzqJo",
       "blueprint": "$scene",
       "position": [
         0,
