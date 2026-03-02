@@ -57,15 +57,27 @@ model.traverse(node => {
 
 Subscribes to both engine events (eg when players `enter` or `leave` the world) and custom events emitted by other apps (via `app.emit()`)
 
+**Engine events:**
+
+| event | data | notes |
+|---|---|---|
+| `enter` | `{ playerId }` | fires when a player joins; avatar is not yet loaded |
+| `leave` | `{ playerId }` | fires when a player leaves |
+| `avatarLoaded` | `{ playerId }` | fires when a remote player's avatar finishes loading and is ready (eg. safe to call `player.ragdoll()`) |
+
 ### `.off(event, callback)`
 
 Unsubscribes from world events.
 
-### `.raycast(origin: Vector3, direction: Vector3, maxDistance: ?Number, layerMask: ?Number)`
+### `.raycast(origin: Vector3, direction: Vector3, maxDistance: ?Number, layerMask: ?Number, opts: ?Object)`
 
 Raycasts the physics scene.
 If `maxDistance` is not specified, max distance is infinite.
 If `layerMask` is not specified, it will hit anything.
+
+**opts fields:**
+- `ignoreLocalPlayer`: Boolean — if `true`, ignores the local player's capsule collider
+- `ignorePlayerId`: String — ignores the capsule collider of the player with this ID
 
 ### `.createLayerMask(...groups)`
 
@@ -79,6 +91,14 @@ Returns a player. If no `playerId` is provided it returns the local player.
 ### `.getPlayers()`: [...Player]
 
 Returns an array of all players.
+
+### `.get(key)`: Any
+
+Gets a value from persistent world storage by key. Only available on the server.
+
+### `.set(key, value)`
+
+Sets a value in persistent world storage by key. Only available on the server. Values must be JSON-serializable.
 
 ### `.getQueryParam(key)`
 
