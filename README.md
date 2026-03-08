@@ -21,6 +21,8 @@ npm run world:save -- my-layout
 
 `world.json` remains the active manifest that app-server syncs. The `world:use` command copies a preset from `worlds/*.world.json` into `world.json`.
 
+The combined zoo/museum backlog for `showcase-engine` lives in [SHOWCASE_ENGINE_CHECKLIST.md](./SHOWCASE_ENGINE_CHECKLIST.md).
+
 ## Start building
 
 Before any coding agent does work in this SDK repo, require this pre-read from the repository root:
