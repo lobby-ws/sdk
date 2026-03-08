@@ -8,6 +8,19 @@ Recommended Node.js version: 22.11.0
 npm i && npm run dev
 ```
 
+## World Presets
+
+This SDK worktree now includes named showcase presets under `worlds/`.
+
+```bash
+npm run world:list
+npm run world:use -- minimal
+npm run world:use -- showcase-engine
+npm run world:save -- my-layout
+```
+
+`world.json` remains the active manifest that app-server syncs. The `world:use` command copies a preset from `worlds/*.world.json` into `world.json`.
+
 ## Start building
 
 Before any coding agent does work in this SDK repo, require this pre-read from the repository root:

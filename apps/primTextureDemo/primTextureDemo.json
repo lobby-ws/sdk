@@ -14,7 +14,7 @@
   "scene": false,
   "keep": true,
   "scriptFormat": "module",
-  "model": "assets/Scene.glb",
+  "model": "assets/Model.glb",
   "image": {
     "url": "assets/sky.jpg"
   },

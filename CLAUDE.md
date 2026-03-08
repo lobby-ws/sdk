@@ -9,6 +9,9 @@ Apps live in `apps/` and each app folder contains blueprint JSON plus a script e
 Local-first (project files):
 
 - Run `npm run apps:new <AppName>` (creates `apps/<AppName>/` with `index.js` + blueprint)
+- Switch named world presets: `npm run world:list` / `npm run world:use -- showcase-engine` / `npm run world:use -- minimal`
+- Save the current active layout to a preset: `npm run world:save -- <name>`
+- Presets live in `worlds/*.world.json`; root `world.json` is the active manifest app-server syncs
 - Batch-edit `world.json` entities: `npm run world:entities -- add --template-id <id> --transforms <file>` / `npm run world:entities -- delete --blueprint <name>`
 - To duplicate one app many times (eg, make a forest from one `Tree`), generate many transforms and run `npm run world:entities -- add --template-id <TreeEntityId> --transforms tmp/forest.json --yes`, then delete `tmp/forest.json`
 - See `docs/world-entities-cli.md` for full flags (`--replace`, `--ids`, `--yes`, `--world`)
