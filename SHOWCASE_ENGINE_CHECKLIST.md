@@ -37,7 +37,7 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 
 ## Interaction And Players
 
-- [ ] `showcaseActions`
+- [x] `showcaseActions`
 - [ ] `showcasePointerEvents`
 - [ ] `showcaseControlAndCamera`
 - [ ] `showcaseReticle`
@@ -51,17 +51,17 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 
 ## UI And Media
 
-- [ ] `showcaseUIWorld`
+- [x] `showcaseUIWorld`
 - [ ] `showcaseUIScreen`
 - [ ] `showcaseUIComponents`
 - [ ] `showcaseUIInput`
 - [ ] `showcaseWebViewWorld`
 - [ ] `showcaseWebViewScreen`
-- [ ] `showcaseAudio`
-- [ ] `showcaseVideo`
+- [x] `showcaseAudio`
+- [x] `showcaseVideo`
 - [ ] `showcaseLinkedVideo`
 - [ ] `showcaseScreenShare`
-- [ ] `showcaseParticles`
+- [x] `showcaseParticles`
 
 ## System And SDK
 

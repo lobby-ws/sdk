@@ -276,6 +276,121 @@
         "scrollSpeedY": 0.18
       },
       "state": {}
+    },
+    {
+      "id": "showcaseAct",
+      "blueprint": "showcaseActions",
+      "position": [
+        -24,
+        0,
+        84
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseAud",
+      "blueprint": "showcaseAudio",
+      "position": [
+        0,
+        0,
+        84
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcasePrt",
+      "blueprint": "showcaseParticles",
+      "position": [
+        24,
+        0,
+        84
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseUiW",
+      "blueprint": "showcaseUIWorld",
+      "position": [
+        -24,
+        0,
+        112
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseVid",
+      "blueprint": "showcaseVideo",
+      "position": [
+        0,
+        0,
+        112
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }
