@@ -99,6 +99,27 @@ const STATIONS = [
     targetPosition: [0, 1, 132],
     accent: '#14b8a6',
   },
+  {
+    title: 'Screen UI',
+    description: 'HUD-style overlays, pivots, and safe-area offsets.',
+    position: [4.5, 0, 34],
+    targetPosition: [24, 1, 132],
+    accent: '#38bdf8',
+  },
+  {
+    title: 'UI Components',
+    description: 'Composed cards with views, text, and images.',
+    position: [13.5, 0, 34],
+    targetPosition: [-24, 1, 160],
+    accent: '#14b8a6',
+  },
+  {
+    title: 'UI Input',
+    description: 'Focus, blur, change, and submit callbacks.',
+    position: [-13.5, 0, 43],
+    targetPosition: [0, 1, 160],
+    accent: '#a855f7',
+  },
 ]
 
 export default (world, app) => {
@@ -110,7 +131,7 @@ export default (world, app) => {
 
   addCheckerFloor(app, root, {
     width: 34,
-    depth: 80,
+    depth: 96,
     tileSize: 4,
     colorA: '#10161d',
     colorB: '#17222d',

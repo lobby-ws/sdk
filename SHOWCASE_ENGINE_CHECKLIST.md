@@ -52,9 +52,9 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 ## UI And Media
 
 - [x] `showcaseUIWorld`
-- [ ] `showcaseUIScreen`
-- [ ] `showcaseUIComponents`
-- [ ] `showcaseUIInput`
+- [x] `showcaseUIScreen`
+- [x] `showcaseUIComponents`
+- [x] `showcaseUIInput`
 - [ ] `showcaseWebViewWorld`
 - [ ] `showcaseWebViewScreen`
 - [x] `showcaseAudio`
