@@ -1,0 +1,34 @@
+{
+  "id": "primTextureDemo",
+  "uid": "2b81dfae-6e3f-478e-be0e-247e7ed06fb0",
+  "name": "primTextureDemo",
+  "scope": "primTextureDemo",
+  "script": "asset://84324b768ff1555068a566e38da58512700948f79fda1ffa6038758dacfd98d5.js",
+  "createdAt": "2026-03-03T23:17:33.830Z",
+  "preload": false,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": false,
+  "disabled": false,
+  "scene": false,
+  "keep": true,
+  "scriptFormat": "module",
+  "model": "assets/Scene.glb",
+  "image": {
+    "url": "assets/sky.jpg"
+  },
+  "props": {
+    "tint": "#ffffff",
+    "metalness": 0.15,
+    "roughness": 0.75,
+    "opacity": 1,
+    "doubleside": false,
+    "sameTextureCopies": 8,
+    "useSecondary": false,
+    "animateSwap": true,
+    "swapSeconds": 2.5,
+    "primaryTexture": null,
+    "secondaryTexture": null
+  }
+}
