@@ -26,10 +26,10 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 
 ## Physics
 
-- [ ] `showcaseRigidBodies`
+- [x] `showcaseRigidBodies`
 - [ ] `showcaseColliders`
 - [ ] `showcaseTriggersAndContacts`
-- [ ] `showcaseJoints`
+- [x] `showcaseJoints`
 - [ ] `showcaseControllers`
 - [ ] `showcasePhysicsLayers`
 - [ ] `showcaseRaycast`
@@ -65,7 +65,7 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 
 ## System And SDK
 
-- [ ] `showcasePropsPanel`
+- [x] `showcasePropsPanel`
 - [ ] `showcaseWorldLoad`
 - [ ] `showcaseModelTraversal`
 - [ ] `showcaseAppState`

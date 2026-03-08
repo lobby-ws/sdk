@@ -78,6 +78,27 @@ const STATIONS = [
     targetPosition: [0, 1, 104],
     accent: '#ef4444',
   },
+  {
+    title: 'Rigid Bodies',
+    description: 'Static, kinematic, and dynamic body behavior.',
+    position: [13.5, 0, 25],
+    targetPosition: [24, 1, 104],
+    accent: '#f59e0b',
+  },
+  {
+    title: 'Joints',
+    description: 'Hinge, socket, and distance constraints.',
+    position: [-13.5, 0, 34],
+    targetPosition: [-24, 1, 132],
+    accent: '#8b5cf6',
+  },
+  {
+    title: 'Props Panel',
+    description: 'Text, numbers, toggles, colors, files, and buttons.',
+    position: [-4.5, 0, 34],
+    targetPosition: [0, 1, 132],
+    accent: '#14b8a6',
+  },
 ]
 
 export default (world, app) => {
@@ -89,7 +110,7 @@ export default (world, app) => {
 
   addCheckerFloor(app, root, {
     width: 34,
-    depth: 32,
+    depth: 80,
     tileSize: 4,
     colorA: '#10161d',
     colorB: '#17222d',
