@@ -1,0 +1,250 @@
+const FLOOR_A = '#12181f'
+const FLOOR_B = '#18222b'
+const PANEL_BG = 'rgba(8, 12, 16, 0.92)'
+const PANEL_FG = '#f5fbff'
+const PANEL_MUTED = '#b8c6d3'
+
+export function hidePlaceholder(app) {
+  const block = app.get('Block')
+  if (block) block.active = false
+}
+
+export function addCheckerFloor(app, parent, options = {}) {
+  const width = numberOr(options.width, 12)
+  const depth = numberOr(options.depth, 12)
+  const tileSize = Math.max(0.5, numberOr(options.tileSize, 2))
+  const thickness = Math.max(0.04, numberOr(options.thickness, 0.08))
+  const colorA = options.colorA || FLOOR_A
+  const colorB = options.colorB || FLOOR_B
+
+  const cols = Math.max(1, Math.round(width / tileSize))
+  const rows = Math.max(1, Math.round(depth / tileSize))
+  const tileWidth = width / cols
+  const tileDepth = depth / rows
+  const startX = -width / 2 + tileWidth / 2
+  const startZ = -depth / 2 + tileDepth / 2
+
+  const group = app.create('group')
+  setPosition(group, options.position)
+
+  for (let x = 0; x < cols; x += 1) {
+    for (let z = 0; z < rows; z += 1) {
+      const tile = app.create('prim', {
+        type: 'box',
+        size: [tileWidth, thickness, tileDepth],
+        position: [startX + x * tileWidth, -thickness / 2, startZ + z * tileDepth],
+        color: (x + z) % 2 === 0 ? colorA : colorB,
+        roughness: 0.82,
+        metalness: 0.05,
+        physics: 'static',
+        receiveShadow: true,
+        castShadow: false,
+      })
+      group.add(tile)
+    }
+  }
+
+  parent.add(group)
+  return group
+}
+
+export function addPedestal(app, parent, options = {}) {
+  const size = vector3Or(options.size, [2.4, 0.5, 2.4])
+  const color = options.color || '#202831'
+  const topColor = options.topColor || '#2a3642'
+  const accent = options.accent || '#7dd3fc'
+
+  const group = app.create('group')
+  setPosition(group, options.position)
+
+  const base = app.create('prim', {
+    type: 'box',
+    size,
+    position: [0, size[1] / 2, 0],
+    color,
+    roughness: 0.88,
+    metalness: 0.08,
+    physics: 'static',
+    receiveShadow: true,
+    castShadow: true,
+  })
+
+  const top = app.create('prim', {
+    type: 'box',
+    size: [size[0] * 0.92, 0.08, size[2] * 0.92],
+    position: [0, size[1] + 0.04, 0],
+    color: topColor,
+    roughness: 0.42,
+    metalness: 0.22,
+    emissive: accent,
+    emissiveIntensity: 0.35,
+    receiveShadow: true,
+    castShadow: false,
+  })
+
+  group.add(base)
+  group.add(top)
+  parent.add(group)
+  return group
+}
+
+export function addInfoPanel(app, parent, options = {}) {
+  const lines = Array.isArray(options.lines) ? options.lines.filter(Boolean) : []
+  const accent = options.accent || '#7dd3fc'
+  const width = Math.max(220, numberOr(options.width, 420))
+  const computedHeight = 112 + lines.length * 30 + (options.eyebrow ? 24 : 0)
+  const height = Math.max(96, numberOr(options.height, computedHeight))
+
+  const panel = app.create('ui', {
+    width,
+    height,
+    size: numberOr(options.size, 0.0045),
+    pivot: options.pivot || 'bottom-center',
+    billboard: options.billboard || 'y',
+    pointerEvents: false,
+    backgroundColor: options.backgroundColor || PANEL_BG,
+    borderWidth: numberOr(options.borderWidth, 4),
+    borderColor: accent,
+    borderRadius: numberOr(options.borderRadius, 18),
+    padding: numberOr(options.padding, 18),
+    gap: numberOr(options.gap, 10),
+    lit: false,
+    doubleside: true,
+  })
+  setPosition(panel, options.position)
+
+  if (options.eyebrow) {
+    panel.add(
+      app.create('uitext', {
+        value: options.eyebrow,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: accent,
+      })
+    )
+  }
+
+  panel.add(
+    app.create('uitext', {
+      value: options.title || 'Exhibit',
+      fontSize: numberOr(options.titleSize, 34),
+      fontWeight: 'bold',
+      color: options.titleColor || PANEL_FG,
+      lineHeight: 1.05,
+    })
+  )
+
+  for (const line of lines) {
+    panel.add(
+      app.create('uitext', {
+        value: line,
+        fontSize: numberOr(options.bodySize, 18),
+        color: line.startsWith('Edit:') ? accent : PANEL_MUTED,
+        lineHeight: 1.28,
+      })
+    )
+  }
+
+  parent.add(panel)
+  return panel
+}
+
+export function addMarker(app, parent, options = {}) {
+  const color = options.color || '#7dd3fc'
+  const radius = Math.max(0.05, numberOr(options.radius, 0.16))
+  const marker = app.create('prim', {
+    type: 'sphere',
+    size: [radius],
+    position: vector3Or(options.position, [0, 0, 0]),
+    color: '#f8fbff',
+    roughness: 0.15,
+    metalness: 0.1,
+    emissive: color,
+    emissiveIntensity: numberOr(options.emissiveIntensity, 1.6),
+    castShadow: false,
+  })
+  parent.add(marker)
+  return marker
+}
+
+export function addTeleportStation({ app, world, parent, position, title, description, targetPosition, targetRotationY = 0, accent = '#7dd3fc' }) {
+  const group = app.create('group')
+  setPosition(group, position)
+
+  addPedestal(app, group, {
+    size: [2.8, 0.56, 2.8],
+    accent,
+    color: '#1c232c',
+    topColor: '#293542',
+  })
+
+  const ring = app.create('prim', {
+    type: 'cylinder',
+    size: [1.18, 1.18, 0.12],
+    position: [0, 0.67, 0],
+    color: '#0d1116',
+    roughness: 0.32,
+    metalness: 0.4,
+    emissive: accent,
+    emissiveIntensity: 1.05,
+    castShadow: false,
+  })
+
+  const beacon = app.create('prim', {
+    type: 'cylinder',
+    size: [0.14, 0.18, 1.3],
+    position: [0, 1.42, 0],
+    color: '#f7fbff',
+    roughness: 0.1,
+    metalness: 0.15,
+    emissive: accent,
+    emissiveIntensity: 1.3,
+    castShadow: false,
+  })
+
+  group.add(ring)
+  group.add(beacon)
+
+  addInfoPanel(app, group, {
+    position: [0, 0.8, 0],
+    width: 270,
+    height: 162,
+    title,
+    lines: [description, 'Hold the action prompt to teleport.'],
+    accent,
+    size: 0.0038,
+  })
+
+  const action = app.create('action', {
+    label: `Visit ${title}`,
+    distance: 4.5,
+    duration: 0.15,
+    onTrigger: () => {
+      if (!world.isClient) return
+      const player = world.getPlayer()
+      if (!player?.local) return
+      const target = player.position.clone()
+      target.set(targetPosition[0], targetPosition[1], targetPosition[2])
+      player.teleport(target, targetRotationY)
+    },
+  })
+  setPosition(action, [0, 1.1, 0])
+  group.add(action)
+
+  parent.add(group)
+  return group
+}
+
+function setPosition(node, value = [0, 0, 0]) {
+  const [x, y, z] = vector3Or(value, [0, 0, 0])
+  node.position.set(x, y, z)
+}
+
+function numberOr(value, fallback) {
+  return Number.isFinite(value) ? value : fallback
+}
+
+function vector3Or(value, fallback) {
+  if (!Array.isArray(value) || value.length !== 3) return fallback.slice()
+  return value.map((entry, index) => (Number.isFinite(entry) ? entry : fallback[index]))
+}

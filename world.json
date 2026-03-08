@@ -49,12 +49,188 @@
       "state": {}
     },
     {
+      "id": "showcaseEnv",
+      "blueprint": "showcaseEnvironment",
+      "position": [
+        0,
+        0,
+        28
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseHub",
+      "blueprint": "showcaseIndex",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseLgt",
+      "blueprint": "showcaseLighting",
+      "position": [
+        -24,
+        0,
+        28
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "snapGuide",
+      "blueprint": "showcaseSnapPoints",
+      "position": [
+        24,
+        0,
+        28
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": false,
+      "props": {
+        "label": "Guide Piece",
+        "showGuide": true,
+        "variant": "straight",
+        "accentColor": "#34d399"
+      },
+      "state": {}
+    },
+    {
+      "id": "snapStrt2",
+      "blueprint": "showcaseSnapPoints",
+      "position": [
+        31,
+        0,
+        28
+      ],
+      "quaternion": [
+        0,
+        0.70710678,
+        0,
+        0.70710678
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": false,
+      "props": {
+        "label": "Straight",
+        "showGuide": false,
+        "variant": "straight",
+        "accentColor": "#34d399"
+      },
+      "state": {}
+    },
+    {
+      "id": "snapCornr",
+      "blueprint": "showcaseSnapPoints",
+      "position": [
+        24,
+        0,
+        36
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": false,
+      "props": {
+        "label": "Corner",
+        "showGuide": false,
+        "variant": "corner",
+        "accentColor": "#f59e0b"
+      },
+      "state": {}
+    },
+    {
+      "id": "showcaseWtr",
+      "blueprint": "showcaseWater",
+      "position": [
+        0,
+        0,
+        56
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
       "id": "textureDemo",
       "blueprint": "primTextureDemo",
       "position": [
-        -8,
+        -18,
         0,
-        12
+        56
       ],
       "quaternion": [
         0,
@@ -78,9 +254,9 @@
       "id": "textureShow",
       "blueprint": "primTextureShowcase",
       "position": [
-        8,
+        18,
         0,
-        12
+        56
       ],
       "quaternion": [
         0,

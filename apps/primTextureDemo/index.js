@@ -1,6 +1,7 @@
+import { addInfoPanel, hidePlaceholder } from '@shared/showcase.js'
+
 export default (world, app, fetch, props, setTimeout) => {
-  const block = app.get('Block')
-  if (block) block.active = false
+  hidePlaceholder(app)
 
   app.configure([
     {
@@ -126,6 +127,19 @@ export default (world, app, fetch, props, setTimeout) => {
 
   const root = app.create('group')
   app.add(root)
+
+  addInfoPanel(app, root, {
+    position: [0, 0.34, -2.7],
+    width: 500,
+    height: 188,
+    title: 'Texture Demo',
+    lines: [
+      'Material tint, opacity, instancing, and runtime texture swapping.',
+      'Edit: apps/primTextureDemo/index.js',
+    ],
+    accent: '#c084fc',
+    size: 0.004,
+  })
 
   const floor = app.create('prim', {
     type: 'plane',
