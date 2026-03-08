@@ -55,11 +55,11 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 - [x] `showcaseUIScreen`
 - [x] `showcaseUIComponents`
 - [x] `showcaseUIInput`
-- [ ] `showcaseWebViewWorld`
-- [ ] `showcaseWebViewScreen`
+- [x] `showcaseWebViewWorld`
+- [x] `showcaseWebViewScreen`
 - [x] `showcaseAudio`
 - [x] `showcaseVideo`
-- [ ] `showcaseLinkedVideo`
+- [x] `showcaseLinkedVideo`
 - [ ] `showcaseScreenShare`
 - [x] `showcaseParticles`
 

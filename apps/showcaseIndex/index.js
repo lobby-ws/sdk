@@ -120,6 +120,27 @@ const STATIONS = [
     targetPosition: [0, 1, 160],
     accent: '#a855f7',
   },
+  {
+    title: 'World WebView',
+    description: 'Interactive HTML rendered into 3D space.',
+    position: [-4.5, 0, 43],
+    targetPosition: [24, 1, 160],
+    accent: '#0ea5e9',
+  },
+  {
+    title: 'Screen WebView',
+    description: 'Iframe overlay pinned to the viewport.',
+    position: [4.5, 0, 43],
+    targetPosition: [-24, 1, 188],
+    accent: '#2563eb',
+  },
+  {
+    title: 'Linked Video',
+    description: 'One transport state across multiple screens.',
+    position: [13.5, 0, 43],
+    targetPosition: [0, 1, 188],
+    accent: '#ef4444',
+  },
 ]
 
 export default (world, app) => {
