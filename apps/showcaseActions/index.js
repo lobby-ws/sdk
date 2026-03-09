@@ -229,6 +229,7 @@ function createScoreboard(app, root, accent) {
     height: 176,
     size: 0.0041,
     pivot: 'bottom-center',
+    billboard: 'y',
     position: [0, 0.3, -2.7],
     backgroundColor: 'rgba(8, 12, 16, 0.92)',
     borderWidth: 4,

@@ -136,6 +136,7 @@ function createLogPanel(app, root, accent) {
     size: 0.0044,
     position: [0, 0.34, -2.85],
     pivot: 'bottom-center',
+    billboard: 'y',
     backgroundColor: 'rgba(8, 12, 16, 0.9)',
     borderWidth: 4,
     borderColor: accent,

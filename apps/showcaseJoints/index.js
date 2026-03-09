@@ -351,6 +351,7 @@ function createStatusPanel(app, root) {
     height: 84,
     size: 0.004,
     pivot: 'bottom-center',
+    billboard: 'y',
     position: [0, 0.32, -2.85],
     backgroundColor: 'rgba(8, 12, 16, 0.9)',
     borderWidth: 4,
