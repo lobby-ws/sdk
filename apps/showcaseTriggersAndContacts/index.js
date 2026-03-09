@@ -13,11 +13,11 @@ export default (world, app, fetch, props) => {
 
   app.configure(withShowcaseActivationMode([
     { key: 'triggerOpacity', type: 'range', label: 'Trigger Opacity', min: 0.1, max: 0.7, step: 0.05, initial: 0.26 },
-    { key: 'launchForce', type: 'range', label: 'Launch Force', min: 6, max: 24, step: 1, initial: 14 },
+    { key: 'launchForce', type: 'range', label: 'Launch Speed', min: 6, max: 24, step: 1, initial: 14 },
   ]))
 
   const triggerOpacity = num(props.triggerOpacity, 0.26)
-  const launchForce = num(props.launchForce, 14)
+  const launchSpeed = num(props.launchForce, 14)
   const { root } = createShowcaseArea(world, app, {
     activationMode: props.activationMode,
   })
@@ -66,7 +66,7 @@ export default (world, app, fetch, props) => {
     label: 'Run trigger lane',
     onTrigger: () => {
       resetBody(triggerLane.projectile)
-      triggerLane.projectile.body.addForce(new Vector3(launchForce, 0, 0))
+      triggerLane.projectile.body.setLinearVelocity(new Vector3(launchSpeed, 0, 0))
       state.lastEvent = 'Trigger lane launched.'
       syncStatus(status, state)
     },
@@ -80,7 +80,7 @@ export default (world, app, fetch, props) => {
     label: 'Run contact lane',
     onTrigger: () => {
       resetBody(contactLane.projectile)
-      contactLane.projectile.body.addForce(new Vector3(launchForce, 0, 0))
+      contactLane.projectile.body.setLinearVelocity(new Vector3(launchSpeed, 0, 0))
       state.lastEvent = 'Contact lane launched.'
       syncStatus(status, state)
     },
