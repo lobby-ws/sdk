@@ -9,6 +9,134 @@ export function hidePlaceholder(app) {
   if (block) block.active = false
 }
 
+export function createShowcaseArea(world, app, options = {}) {
+  app.keepActive = true
+
+  const size = vector3Or(options.size, [20, 8, 18])
+  const center = vector3Or(options.center, [0, size[1] / 2, 0])
+  const shell = app.create('group')
+  const root = app.create('group')
+  const listeners = new Set()
+  const occupants = new Set()
+  let active = false
+
+  root.active = false
+  shell.add(root)
+
+  const zone = app.create('prim', {
+    type: 'box',
+    size,
+    position: center,
+    color: '#ffffff',
+    opacity: 0,
+    transparent: true,
+    physics: 'static',
+    trigger: true,
+    castShadow: false,
+    receiveShadow: false,
+  })
+
+  zone.onTriggerEnter = event => {
+    const key = getOccupantKey(world, event)
+    if (!key) return
+    occupants.add(key)
+    setActive(true)
+  }
+
+  zone.onTriggerLeave = event => {
+    const key = getOccupantKey(world, event)
+    if (!key) return
+    occupants.delete(key)
+    setActive(occupants.size > 0)
+  }
+
+  shell.add(zone)
+  app.add(shell)
+
+  syncOccupants()
+
+  return {
+    shell,
+    root,
+    zone,
+    isActive: () => active,
+    onActiveChange(callback) {
+      listeners.add(callback)
+      callback(active)
+      return () => listeners.delete(callback)
+    },
+    setActive,
+  }
+
+  function setActive(next) {
+    if (active === next) return
+    active = next
+    root.active = next
+    for (const listener of listeners) {
+      listener(next)
+    }
+  }
+
+  function syncOccupants() {
+    occupants.clear()
+
+    if (world.isClient) {
+      const player = world.getPlayer()
+      if (player?.local && containsPlayer(player)) {
+        occupants.add('local')
+      }
+    } else {
+      for (const player of world.getPlayers()) {
+        if (player?.id && containsPlayer(player)) {
+          occupants.add(String(player.id))
+        }
+      }
+    }
+
+    setActive(occupants.size > 0)
+  }
+
+  function containsPlayer(player) {
+    if (!player?.position) return false
+
+    const appPosition = app.position
+    const centerX = appPosition.x + center[0]
+    const centerY = appPosition.y + center[1]
+    const centerZ = appPosition.z + center[2]
+
+    return (
+      Math.abs(player.position.x - centerX) <= size[0] / 2 &&
+      Math.abs(player.position.y - centerY) <= size[1] / 2 &&
+      Math.abs(player.position.z - centerZ) <= size[2] / 2
+    )
+  }
+}
+
+export function bindAreaHotEvent(app, area, name, callback) {
+  let bound = false
+
+  const sync = active => {
+    if (active && !bound) {
+      app.on(name, callback)
+      bound = true
+      return
+    }
+    if (!active && bound) {
+      app.off(name, callback)
+      bound = false
+    }
+  }
+
+  const unsubscribe = area.onActiveChange(sync)
+  app.on('destroy', () => {
+    unsubscribe()
+    if (bound) {
+      app.off(name, callback)
+      bound = false
+    }
+  })
+}
+
 export function addCheckerFloor(app, parent, options = {}) {
   const width = numberOr(options.width, 12)
   const depth = numberOr(options.depth, 12)
@@ -247,4 +375,12 @@ function numberOr(value, fallback) {
 function vector3Or(value, fallback) {
   if (!Array.isArray(value) || value.length !== 3) return fallback.slice()
   return value.map((entry, index) => (Number.isFinite(entry) ? entry : fallback[index]))
+}
+
+function getOccupantKey(world, event) {
+  if (!event?.playerId) return null
+  if (world.isClient) {
+    return event.isLocalPlayer ? 'local' : null
+  }
+  return String(event.playerId)
 }

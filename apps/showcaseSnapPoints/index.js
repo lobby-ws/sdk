@@ -1,4 +1,4 @@
-import { addInfoPanel, addMarker, hidePlaceholder } from '@shared/showcase.js'
+import { addInfoPanel, addMarker, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   hidePlaceholder(app)
@@ -19,8 +19,7 @@ export default (world, app, fetch, props) => {
     { key: 'accentColor', type: 'color', label: 'Accent Color', initial: '#34d399' },
   ])
 
-  const root = app.create('group')
-  app.add(root)
+  const { root } = createShowcaseArea(world, app)
 
   const accent = props.accentColor || '#34d399'
   const variant = props.variant === 'corner' ? 'corner' : 'straight'

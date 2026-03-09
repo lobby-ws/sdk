@@ -1,4 +1,4 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 const CARD_ART = svgDataUrl(`
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
@@ -38,9 +38,7 @@ export default (world, app, fetch, props) => {
   ])
 
   const accent = props.accentColor || '#14b8a6'
-  const root = app.create('group')
-
-  app.add(root)
+  const { root } = createShowcaseArea(world, app)
 
   addCheckerFloor(app, root, {
     width: 18,

@@ -1,4 +1,11 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  bindAreaHotEvent,
+  createShowcaseArea,
+  hidePlaceholder,
+} from '@shared/showcase.js'
 
 const VIDEO_SRC = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
 
@@ -24,11 +31,10 @@ export default (world, app, fetch, props) => {
     { key: 'loop', type: 'toggle', label: 'Loop', initial: true },
   ])
 
-  const root = app.create('group')
+  const area = createShowcaseArea(world, app)
+  const { root } = area
   const status = createStatusPanel(app, root)
   const fit = props.fit || 'contain'
-
-  app.add(root)
 
   addCheckerFloor(app, root, {
     width: 18,
@@ -146,8 +152,7 @@ export default (world, app, fetch, props) => {
     const duration = Number.isFinite(mainScreen.duration) ? mainScreen.duration.toFixed(1) : '--'
     status.value = `time ${time}s / ${duration}s | playing ${mainScreen.playing ? 'yes' : 'no'} | fit "${fit}"`
   }
-  app.on('update', onUpdate)
-  app.on('destroy', () => app.off('update', onUpdate))
+  bindAreaHotEvent(app, area, 'update', onUpdate)
 }
 
 function addControlPedestal(app, root, { position, accent, title, description, label, onTrigger }) {

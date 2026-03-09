@@ -1,4 +1,4 @@
-import { addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import { addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   hidePlaceholder(app)
@@ -15,8 +15,7 @@ export default (world, app, fetch, props) => {
     { key: 'textureSize', type: 'number', label: 'Reflection Size', min: 64, max: 1024, step: 64, initial: 256 },
   ])
 
-  const root = app.create('group')
-  app.add(root)
+  const { root } = createShowcaseArea(world, app)
 
   addPedestal(app, root, {
     position: [0, 0, -6.2],

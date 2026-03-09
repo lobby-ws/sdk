@@ -1,4 +1,4 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
@@ -12,7 +12,7 @@ export default (world, app, fetch, props) => {
   ])
 
   const accent = props.accentColor || '#f97316'
-  const root = app.create('group')
+  const { root } = createShowcaseArea(world, app)
   const scoreboard = createScoreboard(app, root, accent)
   const state = {
     quickToggles: 0,
@@ -20,8 +20,6 @@ export default (world, app, fetch, props) => {
     cancels: 0,
     lastEvent: 'Walk up to a station and use the action prompt.',
   }
-
-  app.add(root)
 
   addCheckerFloor(app, root, {
     width: 18,

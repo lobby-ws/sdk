@@ -1,4 +1,11 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  bindAreaHotEvent,
+  createShowcaseArea,
+  hidePlaceholder,
+} from '@shared/showcase.js'
 
 const VIDEO_SRC = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
 const LINK_ID = 'starter-sdk-linked-video-wall'
@@ -25,9 +32,8 @@ export default (world, app, fetch, props) => {
 
   const fit = props.fit || 'cover'
   const leadVolume = num(props.volume, 0.45)
-  const root = app.create('group')
-
-  app.add(root)
+  const area = createShowcaseArea(world, app)
+  const { root } = area
 
   addCheckerFloor(app, root, {
     width: 18,
@@ -130,8 +136,7 @@ export default (world, app, fetch, props) => {
     const time = Number.isFinite(lead.time) ? lead.time.toFixed(1) : '0.0'
     status.value = `lead time ${time}s | playing ${lead.playing ? 'yes' : 'no'} | linked id "${LINK_ID}"`
   }
-  app.on('update', onUpdate)
-  app.on('destroy', () => app.off('update', onUpdate))
+  bindAreaHotEvent(app, area, 'update', onUpdate)
 }
 
 function buildScreen(app, root, { position, width, height, rotationY, fit, volume }) {

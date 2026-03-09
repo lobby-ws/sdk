@@ -1,4 +1,11 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  bindAreaHotEvent,
+  createShowcaseArea,
+  hidePlaceholder,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   hidePlaceholder(app)
@@ -21,8 +28,8 @@ export default (world, app, fetch, props) => {
     { key: 'castShadow', type: 'toggle', label: 'Cast Shadows', initial: false },
   ])
 
-  const root = app.create('group')
-  app.add(root)
+  const area = createShowcaseArea(world, app)
+  const { root } = area
 
   addCheckerFloor(app, root, {
     width: 18,
@@ -56,8 +63,7 @@ export default (world, app, fetch, props) => {
   const onUpdate = delta => {
     pointRig.rotation.y += delta * speed
   }
-  app.on('update', onUpdate)
-  app.on('destroy', () => app.off('update', onUpdate))
+  bindAreaHotEvent(app, area, 'update', onUpdate)
 }
 
 function buildDirectionalStation(app, root, props) {

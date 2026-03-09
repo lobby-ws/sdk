@@ -1,4 +1,4 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
@@ -11,9 +11,7 @@ export default (world, app, fetch, props) => {
   ])
 
   const accent = props.accentColor || '#a855f7'
-  const root = app.create('group')
-
-  app.add(root)
+  const { root } = createShowcaseArea(world, app)
 
   addCheckerFloor(app, root, {
     width: 18,

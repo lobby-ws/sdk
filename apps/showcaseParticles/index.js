@@ -1,4 +1,4 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
@@ -11,12 +11,10 @@ export default (world, app, fetch, props) => {
     { key: 'ambientEnabled', type: 'toggle', label: 'Ambient Emitters', initial: true },
   ])
 
-  const root = app.create('group')
+  const { root } = createShowcaseArea(world, app)
   const status = createStatusPanel(app, root)
   const ambientEnabled = props.ambientEnabled !== false
   const sparkPower = num(props.sparkPower, 1)
-
-  app.add(root)
 
   addCheckerFloor(app, root, {
     width: 18,

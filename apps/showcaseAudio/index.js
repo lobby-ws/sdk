@@ -1,4 +1,4 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 const AUDIO_SRC = 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3'
 
@@ -13,14 +13,12 @@ export default (world, app, fetch, props) => {
     { key: 'ambientEnabled', type: 'toggle', label: 'Start Ambient Loop', initial: false },
   ])
 
-  const root = app.create('group')
+  const { root } = createShowcaseArea(world, app)
   const status = createStatusPanel(app, root)
   const volume = num(props.masterVolume, 0.65)
   const distance = num(props.speakerDistance, 11)
   const rolloff = num(props.speakerRolloff, 2.6)
   let ambientPlaying = props.ambientEnabled === true
-
-  app.add(root)
 
   addCheckerFloor(app, root, {
     width: 18,

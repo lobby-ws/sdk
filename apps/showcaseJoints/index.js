@@ -1,4 +1,4 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
@@ -10,8 +10,7 @@ export default (world, app, fetch, props) => {
     { key: 'springForce', type: 'range', label: 'Spring Pull', min: 4, max: 30, step: 1, initial: 18 },
   ])
 
-  const root = app.create('group')
-  app.add(root)
+  const { root } = createShowcaseArea(world, app)
 
   addCheckerFloor(app, root, {
     width: 18,

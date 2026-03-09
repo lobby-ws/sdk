@@ -1,4 +1,11 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  bindAreaHotEvent,
+  createShowcaseArea,
+  hidePlaceholder,
+} from '@shared/showcase.js'
 
 const SKY_SHADER = `
   float t = clamp(0.5 + 0.5 * direction.y, 0.0, 1.0);
@@ -42,11 +49,11 @@ export default (world, app, fetch, props) => {
     { key: 'fogFar', type: 'number', label: 'Fog Far', min: 1, step: 1, initial: 54 },
   ])
 
-  const root = app.create('group')
+  const area = createShowcaseArea(world, app)
+  const { root } = area
   const sky = app.create('sky')
 
-  app.add(root)
-  app.add(sky)
+  root.add(sky)
 
   addCheckerFloor(app, root, {
     width: 18,
@@ -133,8 +140,7 @@ export default (world, app, fetch, props) => {
     elapsed += delta
     applySky(elapsed)
   }
-  app.on('update', onUpdate)
-  app.on('destroy', () => app.off('update', onUpdate))
+  bindAreaHotEvent(app, area, 'update', onUpdate)
 
   function applySky(elapsedSeconds) {
     const useShader = props.useShader !== false

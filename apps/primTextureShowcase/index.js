@@ -1,4 +1,4 @@
-import { addInfoPanel, hidePlaceholder } from '@shared/showcase.js'
+import { addInfoPanel, bindAreaHotEvent, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props, setTimeout) => {
   hidePlaceholder(app)
@@ -119,8 +119,10 @@ export default (world, app, fetch, props, setTimeout) => {
   const runtimeEnabled = isRuntimePrototypeEnabled(world)
   const runtimeTexture = runtimeEnabled ? runtimeSpec : altTexture
 
-  const root = app.create('group')
-  app.add(root)
+  const area = createShowcaseArea(world, app, {
+    size: [16, 8, 14],
+  })
+  const { root } = area
 
   addInfoPanel(app, root, {
     position: [0, 0.36, -3.1],
@@ -299,10 +301,7 @@ export default (world, app, fetch, props, setTimeout) => {
     }
   }
 
-  app.on('update', onUpdate)
-  app.on('destroy', () => {
-    app.off('update', onUpdate)
-  })
+  bindAreaHotEvent(app, area, 'update', onUpdate)
 }
 
 function isRuntimePrototypeEnabled(world) {

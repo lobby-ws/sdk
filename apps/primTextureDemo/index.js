@@ -1,4 +1,4 @@
-import { addInfoPanel, hidePlaceholder } from '@shared/showcase.js'
+import { addInfoPanel, bindAreaHotEvent, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
 
 export default (world, app, fetch, props, setTimeout) => {
   hidePlaceholder(app)
@@ -125,8 +125,10 @@ export default (world, app, fetch, props, setTimeout) => {
   const animateSwap = !!props.animateSwap
   const swapSeconds = clampNumber(props.swapSeconds, 0, 30, 2.5)
 
-  const root = app.create('group')
-  app.add(root)
+  const area = createShowcaseArea(world, app, {
+    size: [14, 8, 14],
+  })
+  const { root } = area
 
   addInfoPanel(app, root, {
     position: [0, 0.34, -2.7],
@@ -250,10 +252,7 @@ export default (world, app, fetch, props, setTimeout) => {
     runtimeTextureBox.texture = usingTextureA ? textureA : textureB
   }
 
-  app.on('update', onUpdate)
-  app.on('destroy', () => {
-    app.off('update', onUpdate)
-  })
+  bindAreaHotEvent(app, area, 'update', onUpdate)
 }
 
 function clamp01(value, fallback) {
