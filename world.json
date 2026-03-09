@@ -936,6 +936,29 @@
       "pinned": true,
       "props": {},
       "state": {}
+    },
+    {
+      "id": "showcaseRgd",
+      "blueprint": "showcaseRagdollGun",
+      "position": [
+        0,
+        0,
+        540
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }

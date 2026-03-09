@@ -30,7 +30,7 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 - [ ] `showcaseControllers`
 - [x] `showcasePhysicsLayers`
 - [x] `showcaseRaycast`
-- [ ] `showcaseRagdollGun`
+- [x] `showcaseRagdollGun`
 
 ## Interaction And Players
 

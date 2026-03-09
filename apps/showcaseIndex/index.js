@@ -246,6 +246,13 @@ const STATIONS = [
     targetPosition: [30, 1, 496],
     accent: '#22c55e',
   },
+  {
+    title: 'Ragdoll Gun',
+    description: 'Raycast hits trigger ragdolls and per-bone pushes.',
+    position: [-13.5, 0, 106],
+    targetPosition: [0, 1, 532],
+    accent: '#ef4444',
+  },
 ]
 
 export default (world, app) => {
