@@ -7,22 +7,7 @@ import {
   withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
-const IMAGE_POSTER = svgDataUrl(`
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
-    <defs>
-      <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0%" stop-color="#0f766e"/>
-        <stop offset="100%" stop-color="#0f172a"/>
-      </linearGradient>
-    </defs>
-    <rect width="480" height="320" rx="28" fill="url(#bg)"/>
-    <circle cx="88" cy="88" r="44" fill="#99f6e4" fill-opacity="0.9"/>
-    <path d="M0 250 C110 184 196 184 278 224 C338 252 402 250 480 214 L480 320 L0 320 Z" fill="#22d3ee"/>
-    <rect x="238" y="54" width="150" height="18" rx="9" fill="#e0f2fe" fill-opacity="0.85"/>
-    <rect x="238" y="90" width="114" height="16" rx="8" fill="#a5f3fc" fill-opacity="0.74"/>
-    <rect x="238" y="120" width="138" height="16" rx="8" fill="#67e8f9" fill-opacity="0.58"/>
-  </svg>
-`)
+const DEFAULT_IMAGE_URL = 'assets/image.png'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
@@ -37,7 +22,7 @@ export default (world, app, fetch, props) => {
   ]))
 
   const accent = props.accentColor || '#0ea5e9'
-  const src = props.imageFile?.url || IMAGE_POSTER
+  const src = resolveFileUrl(props.imageFile, DEFAULT_IMAGE_URL)
   const width = num(props.surfaceWidth, 2.4)
   const height = num(props.surfaceHeight, 1.6)
   const castShadows = props.castImageShadows !== false
@@ -224,10 +209,12 @@ function buildBackfaceCard(app, root, src) {
   })
 }
 
-function svgDataUrl(svg) {
-  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.trim())}`
-}
-
 function num(value, fallback) {
   return Number.isFinite(value) ? value : fallback
+}
+
+function resolveFileUrl(value, fallback) {
+  if (typeof value === 'string' && value.trim()) return value.trim()
+  if (value?.url) return value.url
+  return fallback
 }

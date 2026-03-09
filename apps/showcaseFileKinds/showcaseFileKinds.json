@@ -9,8 +9,8 @@
     "accentColor": "#14b8a6",
     "textureFile": {
       "type": "texture",
-      "name": "sky.jpg",
-      "url": "asset://sky.jpg"
+      "name": "image.png",
+      "url": "asset://image.png"
     },
     "hdrFile": {
       "type": "hdr",

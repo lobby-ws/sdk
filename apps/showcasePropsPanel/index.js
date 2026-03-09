@@ -116,7 +116,7 @@ export default (world, app, fetch, props) => {
     size: previewSize(props.shape || 'sphere'),
     position: [0, 1.5, 1],
     color: '#f8fafc',
-    texture: props.texture?.url || null,
+    texture: resolveFileUrl(props.texture, null),
     emissive: accent,
     emissiveIntensity: num(props.glow, 0.8),
     roughness: 0.26,
@@ -190,4 +190,10 @@ function previewSize(type) {
 
 function num(value, fallback) {
   return Number.isFinite(value) ? value : fallback
+}
+
+function resolveFileUrl(value, fallback) {
+  if (typeof value === 'string' && value.trim()) return value.trim()
+  if (value?.url) return value.url
+  return fallback
 }

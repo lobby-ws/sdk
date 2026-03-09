@@ -7,6 +7,9 @@
   "model": "assets/Model.glb",
   "props": {
     "accentColor": "#14b8a6",
+    "imageFile": {
+      "url": "assets/image.png"
+    },
     "showSecondaryCard": true,
     "fitMode": "cover"
   },

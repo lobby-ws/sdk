@@ -7,6 +7,9 @@
   "model": "assets/Model.glb",
   "props": {
     "accentColor": "#0ea5e9",
+    "imageFile": {
+      "url": "assets/image.png"
+    },
     "surfaceWidth": 2.4,
     "surfaceHeight": 1.6,
     "castImageShadows": true

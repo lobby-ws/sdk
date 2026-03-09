@@ -7,7 +7,7 @@ import {
   withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
-const DEFAULT_TEXTURE_URL = 'asset://sky.jpg'
+const DEFAULT_TEXTURE_URL = 'asset://image.png'
 const DEFAULT_HDR_URL = 'asset://sky.hdr'
 const DEFAULT_MODEL_URL = 'asset://Model.glb'
 const DEFAULT_AVATAR_URL = 'asset://avatar.vrm'
@@ -29,7 +29,7 @@ export default (world, app, fetch, props) => {
   ]))
 
   const accent = props.accentColor || '#14b8a6'
-  const textureFile = props.textureFile?.url ? props.textureFile : { url: DEFAULT_TEXTURE_URL, name: 'sky.jpg' }
+  const textureFile = props.textureFile?.url ? props.textureFile : { url: DEFAULT_TEXTURE_URL, name: 'image.png' }
   const hdrFile = props.hdrFile?.url ? props.hdrFile : { url: DEFAULT_HDR_URL, name: 'sky.hdr' }
   const audioFile = props.audioFile?.url ? props.audioFile : { url: DEFAULT_AUDIO_URL, name: 't-rex-roar.mp3' }
   const avatarFile = props.avatarFile?.url ? props.avatarFile : { url: DEFAULT_AVATAR_URL, name: 'avatar.vrm' }

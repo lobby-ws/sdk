@@ -13,7 +13,9 @@
     "showBeacon": true,
     "shape": "sphere",
     "accent": "#14b8a6",
-    "texture": null
+    "texture": {
+      "url": "assets/image.png"
+    }
   },
   "preload": true,
   "public": false,

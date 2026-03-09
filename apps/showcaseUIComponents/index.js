@@ -7,22 +7,7 @@ import {
   withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
-const CARD_ART = svgDataUrl(`
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
-    <defs>
-      <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0%" stop-color="#0f766e"/>
-        <stop offset="100%" stop-color="#0f172a"/>
-      </linearGradient>
-    </defs>
-    <rect width="480" height="320" rx="28" fill="url(#bg)"/>
-    <circle cx="96" cy="92" r="52" fill="#99f6e4" fill-opacity="0.85"/>
-    <path d="M0 270 C100 220 180 210 280 252 C340 278 402 276 480 228 L480 320 L0 320 Z" fill="#14b8a6"/>
-    <rect x="250" y="58" width="156" height="18" rx="9" fill="#ccfbf1" fill-opacity="0.85"/>
-    <rect x="250" y="92" width="120" height="18" rx="9" fill="#5eead4" fill-opacity="0.7"/>
-    <rect x="250" y="126" width="144" height="18" rx="9" fill="#2dd4bf" fill-opacity="0.55"/>
-  </svg>
-`)
+const DEFAULT_IMAGE_URL = 'assets/image.png'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
@@ -30,6 +15,7 @@ export default (world, app, fetch, props) => {
 
   app.configure(withShowcaseActivationMode([
     { key: 'accentColor', type: 'color', label: 'Accent', initial: '#14b8a6' },
+    { key: 'imageFile', type: 'file', kind: 'texture', label: 'Card Image' },
     { key: 'showSecondaryCard', type: 'toggle', label: 'Show Secondary Card', initial: true },
     {
       key: 'fitMode',
@@ -83,6 +69,7 @@ export default (world, app, fetch, props) => {
     accent,
     title: 'Inventory Card',
     subtitle: 'Hero card layout',
+    imageUrl: resolveFileUrl(props.imageFile, DEFAULT_IMAGE_URL),
     fitMode: props.fitMode || 'cover',
   }))
 
@@ -94,7 +81,7 @@ export default (world, app, fetch, props) => {
   }
 }
 
-function buildCard(app, { position, accent, title, subtitle, fitMode }) {
+function buildCard(app, { position, accent, title, subtitle, fitMode, imageUrl }) {
   const ui = app.create('ui', {
     width: 320,
     height: 360,
@@ -127,7 +114,7 @@ function buildCard(app, { position, accent, title, subtitle, fitMode }) {
 
   ui.add(
     app.create('uiimage', {
-      src: CARD_ART,
+      src: imageUrl,
       width: 288,
       height: 152,
       objectFit: fitMode,
@@ -241,6 +228,8 @@ function createChip(app, text, backgroundColor) {
   return chip
 }
 
-function svgDataUrl(svg) {
-  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.trim())}`
+function resolveFileUrl(value, fallback) {
+  if (typeof value === 'string' && value.trim()) return value.trim()
+  if (value?.url) return value.url
+  return fallback
 }
