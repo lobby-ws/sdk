@@ -142,7 +142,10 @@ function buildLightingCard(app, root, src, castShadows) {
       intensity: 4.2,
       distance: 8,
       decay: 2,
-      castShadow: castShadows,
+      // Point-light shadows currently trip the runtime's custom CSM shader path.
+      // Keep this light shadowless and let the image surface still cast/receive
+      // against the scene's directional lighting instead.
+      castShadow: false,
       position: [-2.1, 3.4, 1.2],
     })
   )
