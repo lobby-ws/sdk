@@ -7,9 +7,15 @@
   "model": "assets/Model.glb",
   "props": {
     "accentColor": "#d946ef",
-    "primaryTexture": null,
-    "secondaryTexture": null,
-    "alphaTexture": null,
+    "primaryTexture": {
+      "url": "assets/uv_grid_opengl.jpg"
+    },
+    "secondaryTexture": {
+      "url": "assets/brick_diffuse.jpg"
+    },
+    "alphaTexture": {
+      "url": "assets/snowflake.png"
+    },
     "runtimeSpec": "runtime:checker?size=256&cells=10&speed=2&a=ffcc00&b=111111",
     "useSecondaryAsBase": false,
     "tint": "#ffffff",

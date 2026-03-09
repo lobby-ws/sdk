@@ -131,9 +131,9 @@ export default (world, app, fetch, props) => {
   ]))
 
   const accent = props.accentColor || '#d946ef'
-  const primaryTexture = props.primaryTexture?.url || DEFAULT_PRIMARY_TEXTURE
-  const secondaryTexture = props.secondaryTexture?.url || DEFAULT_SECONDARY_TEXTURE
-  const alphaTexture = props.alphaTexture?.url || DEFAULT_ALPHA_TEXTURE
+  const primaryTexture = resolveFileUrl(props.primaryTexture, DEFAULT_PRIMARY_TEXTURE)
+  const secondaryTexture = resolveFileUrl(props.secondaryTexture, DEFAULT_SECONDARY_TEXTURE)
+  const alphaTexture = resolveFileUrl(props.alphaTexture, DEFAULT_ALPHA_TEXTURE)
   const sharedTexture = props.useSecondaryAsBase ? secondaryTexture : primaryTexture
   const runtimeSpec =
     typeof props.runtimeSpec === 'string' && props.runtimeSpec.trim().startsWith('runtime:')
@@ -522,6 +522,12 @@ function clampInt(value, min, max, fallback) {
   if (n < min) return min
   if (n > max) return max
   return n
+}
+
+function resolveFileUrl(value, fallback) {
+  if (typeof value === 'string' && value.trim()) return value.trim()
+  if (value?.url) return value.url
+  return fallback
 }
 
 function svgDataUrl(svg) {
