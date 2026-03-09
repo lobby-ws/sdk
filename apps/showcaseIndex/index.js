@@ -229,8 +229,8 @@ export default (world, app) => {
     title: 'Starter SDK Showcases',
     lines: [
       'This preset combines zoos and museums into runnable, editable exhibits.',
-      'Use the teleport pedestals to jump between engine mechanics and sample apps.',
-      'Edit: apps/showcase*/index.js and apps/primTexture*/index.js',
+      'Walk into a portal to jump between engine mechanics and sample apps.',
+      'Edit: apps/showcase*/index.js',
       'Switch presets with npm run world:use -- minimal | showcase-engine',
     ],
     accent: '#f59e0b',

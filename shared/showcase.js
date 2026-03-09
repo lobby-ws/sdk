@@ -3,6 +3,7 @@ const FLOOR_B = '#18222b'
 const PANEL_BG = 'rgba(8, 12, 16, 0.92)'
 const PANEL_FG = '#f5fbff'
 const PANEL_MUTED = '#b8c6d3'
+const SHOWCASE_HUB_TARGET = [72, 1, 2]
 
 export function hidePlaceholder(app) {
   const block = app.get('Block')
@@ -37,6 +38,7 @@ export function createShowcaseArea(world, app, options = {}) {
   const activationMode = options.activationMode === 'gated' ? 'gated' : 'always'
   const size = vector3Or(options.size, [20, 8, 18])
   const center = vector3Or(options.center, [0, size[1] / 2, 0])
+  const returnPosition = vector3Or(options.returnPosition, [size[0] / 2 - 1.8, 0, -size[2] / 2 + 1.8])
   const shell = app.create('group')
   const display = app.create('group')
   const root = app.create('group')
@@ -81,6 +83,21 @@ export function createShowcaseArea(world, app, options = {}) {
   }
 
   app.add(shell)
+
+  if (options.returnToHub !== false) {
+    addTeleportStation({
+      app,
+      world,
+      parent: root,
+      position: returnPosition,
+      title: 'Return To Hub',
+      description: 'Walk into the portal to go back to the main showcase pillars.',
+      targetPosition: vector3Or(options.returnTargetPosition, SHOWCASE_HUB_TARGET),
+      targetRotationY: numberOr(options.returnTargetRotationY, 0),
+      accent: options.returnAccent || '#f59e0b',
+      labelLine: 'Walk into the portal to teleport.',
+    })
+  }
 
   if (activationMode === 'gated') {
     syncOccupants()
@@ -327,7 +344,18 @@ export function addMarker(app, parent, options = {}) {
   return marker
 }
 
-export function addTeleportStation({ app, world, parent, position, title, description, targetPosition, targetRotationY = 0, accent = '#7dd3fc' }) {
+export function addTeleportStation({
+  app,
+  world,
+  parent,
+  position,
+  title,
+  description,
+  targetPosition,
+  targetRotationY = 0,
+  accent = '#7dd3fc',
+  labelLine = 'Walk into the portal to teleport.',
+}) {
   const group = app.create('group')
   setPosition(group, position)
 
@@ -362,34 +390,43 @@ export function addTeleportStation({ app, world, parent, position, title, descri
     castShadow: false,
   })
 
+  const field = app.create('prim', {
+    type: 'box',
+    size: [2.1, 2.4, 2.1],
+    position: [0, 1.2, 0],
+    color: accent,
+    opacity: 0,
+    transparent: true,
+    emissive: accent,
+    emissiveIntensity: 0,
+    physics: 'static',
+    trigger: true,
+    castShadow: false,
+    receiveShadow: false,
+  })
+
+  field.onTriggerEnter = event => {
+    if (!world.isClient || !event?.isLocalPlayer) return
+    const player = world.getPlayer()
+    if (!player?.local) return
+    const target = player.position.clone()
+    target.set(targetPosition[0], targetPosition[1], targetPosition[2])
+    player.teleport(target, targetRotationY)
+  }
+
   group.add(ring)
   group.add(beacon)
+  group.add(field)
 
   addInfoPanel(app, group, {
     position: [0, 0.8, 0],
     width: 270,
     height: 162,
     title,
-    lines: [description, 'Hold the action prompt to teleport.'],
+    lines: [description, labelLine],
     accent,
     size: 0.0038,
   })
-
-  const action = app.create('action', {
-    label: `Visit ${title}`,
-    distance: 4.5,
-    duration: 0.15,
-    onTrigger: () => {
-      if (!world.isClient) return
-      const player = world.getPlayer()
-      if (!player?.local) return
-      const target = player.position.clone()
-      target.set(targetPosition[0], targetPosition[1], targetPosition[2])
-      player.teleport(target, targetRotationY)
-    },
-  })
-  setPosition(action, [0, 1.1, 0])
-  group.add(action)
 
   parent.add(group)
   return group
