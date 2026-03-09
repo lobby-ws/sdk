@@ -12,7 +12,7 @@
     "hdrTexture": {
       "url": "assets/sky.hdr"
     },
-    "useShader": true,
+    "useShader": false,
     "sunElevation": 42,
     "sunAzimuth": 220,
     "sunIntensity": 1.15,
@@ -20,7 +20,7 @@
     "animateSun": false,
     "animateSpeed": 8,
     "rotationY": 0,
-    "fogEnabled": true,
+    "fogEnabled": false,
     "fogColor": "#89a7c7",
     "fogNear": 18,
     "fogFar": 54

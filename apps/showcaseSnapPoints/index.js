@@ -21,6 +21,7 @@ export default (world, app, fetch, props) => {
 
   const { root } = createShowcaseArea(world, app, {
     activationMode: props.activationMode,
+    returnToHub: props.showGuide !== false,
   })
 
   const accent = props.accentColor || '#34d399'

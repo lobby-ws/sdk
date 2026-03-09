@@ -67,6 +67,7 @@ export default (world, app, fetch, props) => {
     padding: 10,
     disabled: props.disabled === true,
     position: [0, 2.2, 1.15],
+    rotation: [0, Math.PI, 0],
     onFocus: () => {
       logPanel.status.value = 'Input focused.'
     },
@@ -99,6 +100,7 @@ export default (world, app, fetch, props) => {
       padding: 10,
       disabled: true,
       position: [0, 1.5, 1.15],
+      rotation: [0, Math.PI, 0],
     })
   )
 

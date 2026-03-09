@@ -132,7 +132,7 @@ function buildTargetWall(app, display, accent) {
   const wall = app.create('prim', {
     type: 'box',
     size: [6.2, 3.8, 0.18],
-    position: [0, 2.25, 4.2],
+    position: [0, 2.25, -1.95],
     color: '#0f172a',
     roughness: 0.32,
     metalness: 0.06,
@@ -177,7 +177,7 @@ function buildTargetWall(app, display, accent) {
   )
 
   addInfoPanel(app, display, {
-    position: [0, 0.34, 3.05],
+    position: [0, 0.34, -3.2],
     width: 420,
     height: 108,
     title: 'Aim Board',
