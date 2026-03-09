@@ -6,6 +6,7 @@
   "desc": null,
   "model": "assets/Model.glb",
   "props": {
+    "activationMode": "gated",
     "accentColor": "#38bdf8",
     "mirrorTint": "#ffffff",
     "textureWidth": 512
