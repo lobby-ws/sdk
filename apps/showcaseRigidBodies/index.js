@@ -46,7 +46,7 @@ export default (world, app, fetch, props) => {
   })
 
   buildStaticRamp(app, root)
-  const { mover, moverTarget } = buildKinematicMover(app, root)
+  const { mover } = buildKinematicMover(app, root)
   const dynamics = buildDynamicStack(app, root, Math.max(2, Math.min(6, Math.round(num(props.stackHeight, 4)))))
   const projectile = buildProjectile(app, root)
   const status = createStatusPanel(app, root)
@@ -80,11 +80,18 @@ export default (world, app, fetch, props) => {
   })
 
   let elapsed = 0
+  const moverLocalTarget = new Vector3(0, 0.82, 1)
+  const moverWorldTarget = new Vector3()
+  const moverWorldPosition = new Vector3()
+  const moverWorldQuaternion = new Quaternion()
+  const moverWorldScale = new Vector3()
   const onFixedUpdate = delta => {
     elapsed += delta
-    const nextPosition = moverTarget.clone()
-    nextPosition.x += Math.sin(elapsed * speed) * 1.8
-    mover.body.setKinematicTarget(nextPosition, mover.body.quaternion)
+    const nextLocalPosition = moverLocalTarget.clone()
+    nextLocalPosition.x += Math.sin(elapsed * speed) * 1.8
+    moverWorldTarget.copy(nextLocalPosition).applyMatrix4(root.matrixWorld)
+    mover.body.matrixWorld.decompose(moverWorldPosition, moverWorldQuaternion, moverWorldScale)
+    mover.body.setKinematicTarget(moverWorldTarget, moverWorldQuaternion)
   }
   bindAreaHotEvent(app, area, 'fixedUpdate', onFixedUpdate)
 }
@@ -159,7 +166,6 @@ function buildKinematicMover(app, root) {
 
   return {
     mover,
-    moverTarget: new Vector3(0, 0.82, 1),
   }
 }
 
