@@ -57,7 +57,8 @@ export default (world, app, fetch, props) => {
   const mainMirror = app.create('mirror', {
     width: 3.2,
     height: 2.5,
-    position: [-2.2, 2.15, 4.1],
+    position: [-2.2, 2.15, 4.04],
+    rotation: [0, Math.PI, 0],
     tint: props.mirrorTint || '#ffffff',
     textureWidth: quality,
     textureHeight: quality,
@@ -65,7 +66,8 @@ export default (world, app, fetch, props) => {
   const sideMirror = app.create('mirror', {
     width: 1.7,
     height: 1.9,
-    position: [2.8, 1.9, 4.1],
+    position: [2.8, 1.9, 4.04],
+    rotation: [0, Math.PI, 0],
     tint: '#dbeafe',
     textureWidth: Math.max(128, Math.round(quality / 2)),
     textureHeight: Math.max(128, Math.round(quality / 2)),
