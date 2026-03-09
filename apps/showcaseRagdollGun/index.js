@@ -72,8 +72,12 @@ export default (world, app, fetch, props, setTimeout) => {
     label: 'Enter first person',
     onTrigger: () => {
       if (!world.isClient) return
-      world.getPlayer()?.firstPerson(true)
-      readout.note.value = 'First-person aim enabled locally.'
+      const localPlayer = world.getPlayer()
+      if (callPlayer(localPlayer, 'firstPerson', true)) {
+        readout.note.value = 'First-person aim enabled locally.'
+      } else {
+        readout.note.value = 'First-person override is unavailable for this local player type.'
+      }
     },
   })
   addControlPad(app, display, {
@@ -84,8 +88,12 @@ export default (world, app, fetch, props, setTimeout) => {
     label: 'Trigger local ragdoll test',
     onTrigger: () => {
       if (!world.isClient) return
-      world.getPlayer()?.ragdoll(true, new Vector3(0, 4, 0), { duration: 2.2, bounce: 0.1 })
-      readout.note.value = 'Local self-test triggered. This is client-only and does not use the gun lane.'
+      const localPlayer = world.getPlayer()
+      if (callPlayer(localPlayer, 'ragdoll', true, new Vector3(0, 4, 0), { duration: 2.2, bounce: 0.1 })) {
+        readout.note.value = 'Local self-test triggered. This is client-only and does not use the gun lane.'
+      } else {
+        readout.note.value = 'Local ragdoll is unavailable for this player type.'
+      }
     },
   })
   addControlPad(app, display, {
@@ -96,8 +104,12 @@ export default (world, app, fetch, props, setTimeout) => {
     label: 'Recover local player',
     onTrigger: () => {
       if (!world.isClient) return
-      world.getPlayer()?.ragdoll(false)
-      readout.note.value = 'Local ragdoll disabled.'
+      const localPlayer = world.getPlayer()
+      if (callPlayer(localPlayer, 'ragdoll', false)) {
+        readout.note.value = 'Local ragdoll disabled.'
+      } else {
+        readout.note.value = 'Local ragdoll recovery is unavailable for this player type.'
+      }
     },
   })
 
@@ -112,13 +124,13 @@ export default (world, app, fetch, props, setTimeout) => {
     app.on('activateRagdoll', ({ playerId, force }) => {
       const player = world.getPlayer(playerId)
       if (!player) return
-      player.ragdoll(true, new Vector3(...force))
+      callPlayer(player, 'ragdoll', true, new Vector3(...force))
     })
 
     app.on('pushBone', ({ playerId, bone, force, point }) => {
       const player = world.getPlayer(playerId)
       if (!player) return
-      player.push(new Vector3(...force), { bone, point: point ? new Vector3(...point) : null })
+      callPlayer(player, 'push', new Vector3(...force), { bone, point: point ? new Vector3(...point) : null })
     })
 
     const unsubscribe = area.onActiveChange(active => {
@@ -126,7 +138,7 @@ export default (world, app, fetch, props, setTimeout) => {
       control.mouseLeft.onPress = active ? fire : null
       world.setReticle(active ? buildReticle(accent) : null)
       if (!active) {
-        world.getPlayer()?.firstPerson(false)
+        callPlayer(world.getPlayer(), 'firstPerson', false)
       }
       syncState(readout, active, impulseStrength, maxDistance)
     })
@@ -135,7 +147,7 @@ export default (world, app, fetch, props, setTimeout) => {
       unsubscribe()
       control.release()
       world.setReticle(null)
-      world.getPlayer()?.firstPerson(false)
+      callPlayer(world.getPlayer(), 'firstPerson', false)
     })
 
     syncState(readout, area.isActive(), impulseStrength, maxDistance)
@@ -439,4 +451,15 @@ function spawnImpact(world, app, point) {
 
 function num(value, fallback) {
   return Number.isFinite(value) ? value : fallback
+}
+
+function callPlayer(player, method, ...args) {
+  if (!player || typeof player[method] !== 'function') return false
+  try {
+    player[method](...args)
+    return true
+  } catch (err) {
+    console.warn(`[showcaseRagdollGun] ${method} failed`, err)
+    return false
+  }
 }
