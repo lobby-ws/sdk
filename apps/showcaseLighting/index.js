@@ -82,20 +82,16 @@ function buildDirectionalStation(app, root, props) {
     accent: '#f59e0b',
   })
 
-  const rig = app.create('group')
-  rig.position.set(-6, 4.3, 0.8)
-  rig.rotation.x = 0.45
-  rig.rotation.z = -0.72
-
-  rig.add(
-    app.create('light', {
-      type: 'directional',
-      intensity: num(props.dirIntensity, 1.2),
-      color: props.dirColor || '#fff2c6',
-      castShadow: props.castShadow === true,
-    })
-  )
-  root.add(rig)
+  const light = app.create('light', {
+    type: 'directional',
+    intensity: num(props.dirIntensity, 1.2),
+    color: props.dirColor || '#fff2c6',
+    castShadow: props.castShadow === true,
+  })
+  light.position.set(-6, 4.3, 0.8)
+  light.rotation.x = 0.45
+  light.rotation.z = -0.72
+  root.add(light)
 
   root.add(
     app.create('prim', {
@@ -141,17 +137,16 @@ function buildPointStation(app, root, props) {
   const orbit = app.create('group')
   orbit.position.set(0, 0, 0.5)
 
-  orbit.add(
-    app.create('light', {
-      type: 'point',
-      color: props.pointColor || '#7dd3fc',
-      intensity: num(props.pointIntensity, 2.5),
-      distance: num(props.pointDistance, 8),
-      decay: 2,
-      castShadow: props.castShadow === true,
-      position: [1.55, 2.6, 0],
-    })
-  )
+  const light = app.create('light', {
+    type: 'point',
+    color: props.pointColor || '#7dd3fc',
+    intensity: num(props.pointIntensity, 2.5),
+    distance: num(props.pointDistance, 8),
+    decay: 2,
+    castShadow: props.castShadow === true,
+  })
+  light.position.set(1.55, 2.6, 0)
+  orbit.add(light)
 
   orbit.add(
     app.create('prim', {
@@ -202,26 +197,26 @@ function buildSpotStation(app, root, props) {
     accent: '#fb7185',
   })
 
-  const rig = app.create('group')
-  rig.position.set(6, 4.4, 1.7)
-  rig.rotation.x = 1.0
-  rig.rotation.z = -0.08
-  rig.add(
-    app.create('light', {
-      type: 'spot',
-      color: props.spotColor || '#fda4af',
-      intensity: num(props.spotIntensity, 4),
-      distance: 10,
-      angle: num(props.spotAngle, 34) * (Math.PI / 180),
-      penumbra: num(props.spotPenumbra, 0.35),
-      castShadow: props.castShadow === true,
-    })
-  )
-  rig.add(
+  const light = app.create('light', {
+    type: 'spot',
+    color: props.spotColor || '#fda4af',
+    intensity: num(props.spotIntensity, 4),
+    distance: 10,
+    angle: num(props.spotAngle, 34) * (Math.PI / 180),
+    penumbra: num(props.spotPenumbra, 0.35),
+    castShadow: props.castShadow === true,
+  })
+  light.position.set(6, 4.4, 1.7)
+  light.rotation.x = 1.0
+  light.rotation.z = -0.08
+  root.add(light)
+
+  root.add(
     app.create('prim', {
       type: 'box',
       size: [0.34, 0.34, 0.9],
-      position: [0, 0, 0],
+      position: [6, 4.4, 1.7],
+      rotation: [1.0, 0, -0.08],
       color: '#f8fafc',
       roughness: 0.2,
       metalness: 0.35,
@@ -230,7 +225,6 @@ function buildSpotStation(app, root, props) {
       castShadow: false,
     })
   )
-  root.add(rig)
 
   root.add(
     app.create('prim', {
