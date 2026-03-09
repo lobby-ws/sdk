@@ -378,18 +378,6 @@ export function addTeleportStation({
     castShadow: false,
   })
 
-  const beacon = app.create('prim', {
-    type: 'cylinder',
-    size: [0.14, 0.18, 1.3],
-    position: [0, 1.42, 0],
-    color: '#f7fbff',
-    roughness: 0.1,
-    metalness: 0.15,
-    emissive: accent,
-    emissiveIntensity: 1.3,
-    castShadow: false,
-  })
-
   const field = app.create('prim', {
     type: 'box',
     size: [2.1, 2.4, 2.1],
@@ -415,7 +403,6 @@ export function addTeleportStation({
   }
 
   group.add(ring)
-  group.add(beacon)
   group.add(field)
 
   addInfoPanel(app, group, {
