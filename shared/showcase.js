@@ -39,6 +39,11 @@ export function createShowcaseArea(world, app, options = {}) {
   const size = vector3Or(options.size, [20, 8, 18])
   const center = vector3Or(options.center, [0, size[1] / 2, 0])
   const returnPosition = vector3Or(options.returnPosition, [size[0] / 2 - 1.8, 0, -size[2] / 2 + 1.8])
+  const landingSize = [
+    Math.max(size[0] + 6, 22),
+    0.16,
+    Math.max(size[2] + 10, 24),
+  ]
   const shell = app.create('group')
   const display = app.create('group')
   const root = app.create('group')
@@ -50,6 +55,20 @@ export function createShowcaseArea(world, app, options = {}) {
   root.active = active
   shell.add(root)
   let zone = null
+
+  display.add(
+    app.create('prim', {
+      type: 'box',
+      size: landingSize,
+      position: [0, -landingSize[1] / 2 - 0.03, 0],
+      color: '#0b1015',
+      roughness: 0.92,
+      metalness: 0.02,
+      physics: 'static',
+      receiveShadow: true,
+      castShadow: false,
+    })
+  )
 
   if (activationMode === 'gated') {
     zone = app.create('prim', {
