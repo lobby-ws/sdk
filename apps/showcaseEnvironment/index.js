@@ -9,19 +9,52 @@ import {
 } from '@shared/showcase.js'
 
 const SKY_SHADER = `
-  float t = clamp(0.5 + 0.5 * direction.y, 0.0, 1.0);
-  vec3 horizon = vec3(0.92, 0.53, 0.28);
-  vec3 mid = vec3(0.28, 0.48, 0.72);
-  vec3 zenith = vec3(0.04, 0.10, 0.22);
-  vec3 base = mix(horizon, mix(mid, zenith, t), t);
+  float y = direction.y;
+  float t = clamp(0.5 + 0.5 * y, 0.0, 1.0);
 
-  float cloudA = sin(direction.x * 11.0 + direction.z * 7.5 + uTime * uWindSpeed) * 0.5 + 0.5;
-  float cloudB = sin(direction.x * 19.0 - direction.z * 13.0 - uTime * (uWindSpeed * 0.6)) * 0.5 + 0.5;
-  float cloudMask = smoothstep(0.42, 0.95, mix(cloudA, cloudB, 0.45));
-  float horizonGlow = smoothstep(-0.15, 0.18, direction.y) * (1.0 - smoothstep(0.18, 0.55, direction.y));
-  vec3 glow = vec3(1.0, 0.55, 0.24) * horizonGlow * uGlow;
+  vec3 nightLow = vec3(0.01, 0.01, 0.03);
+  vec3 nightMid = vec3(0.02, 0.02, 0.08);
+  vec3 nightHigh = vec3(0.0, 0.0, 0.04);
+  vec3 base = mix(nightLow, mix(nightMid, nightHigh, t), t);
 
-  color = base + glow + vec3(cloudMask * 0.08 * uGlow);
+  float angle = atan(direction.x, direction.z);
+
+  float wave1 = sin(angle * 3.0 + uTime * 0.15) * 0.5 + 0.5;
+  float wave2 = sin(angle * 5.0 - uTime * 0.1 + 1.5) * 0.5 + 0.5;
+  float wave3 = sin(angle * 7.0 + uTime * 0.08 + 3.0) * 0.5 + 0.5;
+
+  float curtain = wave1 * 0.5 + wave2 * 0.3 + wave3 * 0.2;
+
+  float band = smoothstep(0.15, 0.4, y) * smoothstep(0.85, 0.5, y);
+  float shimmer = sin(angle * 20.0 + y * 30.0 + uTime * 0.5) * 0.5 + 0.5;
+  float auroraShape = band * curtain * (0.7 + 0.3 * shimmer);
+
+  vec3 green = vec3(0.1, 0.9, 0.3);
+  vec3 teal = vec3(0.0, 0.7, 0.7);
+  vec3 purple = vec3(0.4, 0.1, 0.8);
+  vec3 pink = vec3(0.7, 0.1, 0.5);
+
+  float colorMix = sin(angle * 2.0 + uTime * 0.12) * 0.5 + 0.5;
+  float colorMix2 = sin(angle * 3.5 - uTime * 0.07 + 2.0) * 0.5 + 0.5;
+  vec3 auroraColor = mix(mix(green, teal, colorMix), mix(purple, pink, colorMix2), smoothstep(0.3, 0.7, y));
+
+  vec3 aurora = auroraColor * auroraShape * 1.5;
+
+  float stars = 0.0;
+  vec3 starDir = normalize(direction);
+  float sx = atan(starDir.x, starDir.z) * 50.0;
+  float sy = starDir.y * 100.0;
+  float cell = floor(sx) * 137.0 + floor(sy) * 241.0;
+  float starRand = fract(sin(cell) * 43758.5453);
+  if (starRand > 0.97) {
+    float fx = fract(sx) - 0.5;
+    float fy = fract(sy) - 0.5;
+    float dist = fx * fx + fy * fy;
+    float twinkle = sin(uTime * (2.0 + starRand * 4.0) + starRand * 6.28) * 0.4 + 0.6;
+    stars = smoothstep(0.02, 0.0, dist) * twinkle * step(0.0, y);
+  }
+
+  color = base + aurora + vec3(stars);
 `
 
 export default (world, app, fetch, props) => {
@@ -33,8 +66,6 @@ export default (world, app, fetch, props) => {
     { key: 'skyTexture', type: 'file', kind: 'texture', label: 'Background Texture' },
     { key: 'hdrTexture', type: 'file', kind: 'hdr', label: 'HDR Lighting' },
     { key: 'useShader', type: 'toggle', label: 'Use Procedural Shader', initial: true },
-    { key: 'glowStrength', type: 'range', label: 'Shader Glow', min: 0, max: 1.5, step: 0.05, initial: 0.4 },
-    { key: 'cloudSpeed', type: 'range', label: 'Shader Wind', min: 0, max: 3, step: 0.05, initial: 0.8 },
     { key: 'rotationY', type: 'number', label: 'Sky Rotation', min: -180, max: 180, step: 5, initial: 0 },
     { key: 'sunSection', type: 'section', label: 'Sun' },
     { key: 'sunElevation', type: 'range', label: 'Elevation', min: 5, max: 85, step: 1, initial: 42 },
@@ -81,7 +112,7 @@ export default (world, app, fetch, props) => {
     title: 'Environment Showcase',
     lines: [
       'This app controls the active sky, HDR reflections, sun direction, and fog.',
-      'Use the toggles to switch between texture-backed and procedural sky rendering.',
+      'Use the toggle to switch between texture-backed and procedural sky rendering.',
       'Edit: apps/showcaseEnvironment/index.js',
     ],
     accent: '#38bdf8',
@@ -154,12 +185,7 @@ export default (world, app, fetch, props) => {
     sky.bg = useShader ? null : props.skyTexture?.url || 'assets/sky.jpg'
     sky.hdr = props.hdrTexture?.url || 'assets/sky.hdr'
     sky.shader = useShader ? SKY_SHADER : null
-    sky.shaderUniforms = useShader
-      ? {
-          uGlow: num(props.glowStrength, 0.4),
-          uWindSpeed: num(props.cloudSpeed, 0.8),
-        }
-      : null
+    sky.shaderUniforms = null
     sky.rotationY = num(props.rotationY, 0) * (-Math.PI / 180)
     sky.sunDirection = createSunDirection(elevation, azimuth)
     sky.sunIntensity = num(props.sunIntensity, 1.15)

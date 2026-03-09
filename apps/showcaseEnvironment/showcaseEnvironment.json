@@ -13,8 +13,6 @@
       "url": "assets/sky.hdr"
     },
     "useShader": true,
-    "glowStrength": 0.4,
-    "cloudSpeed": 0.8,
     "sunElevation": 42,
     "sunAzimuth": 220,
     "sunIntensity": 1.15,
