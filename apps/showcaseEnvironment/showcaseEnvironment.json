@@ -1,0 +1,36 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "skyTexture": {
+      "url": "assets/sky.jpg"
+    },
+    "hdrTexture": {
+      "url": "assets/sky.hdr"
+    },
+    "useShader": false,
+    "sunElevation": 42,
+    "sunAzimuth": 220,
+    "sunIntensity": 1.15,
+    "sunColor": "#fff4d6",
+    "animateSun": false,
+    "animateSpeed": 8,
+    "rotationY": 0,
+    "fogEnabled": false,
+    "fogColor": "#89a7c7",
+    "fogNear": 18,
+    "fogFar": 54
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

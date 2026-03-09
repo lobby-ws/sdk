@@ -1,0 +1,22 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#0ea5e9",
+    "pointerEvents": true,
+    "doubleside": false,
+    "factor": 180
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

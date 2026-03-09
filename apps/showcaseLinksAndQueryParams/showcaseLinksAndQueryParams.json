@@ -1,0 +1,23 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#2563eb",
+    "queryKey": "showcase_demo",
+    "alphaValue": "alpha",
+    "betaValue": "beta",
+    "openUrl": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

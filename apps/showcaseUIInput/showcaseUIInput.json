@@ -1,0 +1,21 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#a855f7",
+    "placeholder": "Type a note and press Enter",
+    "disabled": false
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

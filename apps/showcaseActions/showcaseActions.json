@@ -1,0 +1,22 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#f97316",
+    "quickDuration": 0.15,
+    "holdDuration": 0.9,
+    "cancelDuration": 1.6
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

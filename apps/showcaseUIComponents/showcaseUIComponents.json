@@ -1,0 +1,26 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#14b8a6",
+    "imageFile": {
+      "type": "image",
+      "name": "image.png",
+      "url": "assets/image.png"
+    },
+    "showSecondaryCard": true,
+    "fitMode": "cover"
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

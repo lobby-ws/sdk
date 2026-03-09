@@ -1,0 +1,39 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#d946ef",
+    "primaryTexture": {
+      "url": "assets/uv_grid_opengl.jpg"
+    },
+    "secondaryTexture": {
+      "url": "assets/brick_diffuse.jpg"
+    },
+    "runtimeSpec": "runtime:checker?size=256&cells=10&speed=2&a=ffcc00&b=111111",
+    "useSecondaryAsBase": false,
+    "tint": "#ffffff",
+    "metalness": 0.15,
+    "roughness": 0.75,
+    "opacity": 1,
+    "doubleside": false,
+    "sharedCopies": 12,
+    "scrollSpeedX": 0.45,
+    "scrollSpeedY": 0.18,
+    "tileRepeatX": 2,
+    "tileRepeatY": 2,
+    "animateSwap": true,
+    "swapSeconds": 1.5
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

@@ -1,0 +1,30 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "dirIntensity": 1.2,
+    "dirColor": "#fff2c6",
+    "pointIntensity": 2.5,
+    "pointDistance": 8,
+    "pointColor": "#7dd3fc",
+    "spotIntensity": 4,
+    "spotAngle": 34,
+    "spotPenumbra": 0.35,
+    "spotColor": "#fda4af",
+    "castShadow": false,
+    "animatePoint": true,
+    "orbitSpeed": 0.75
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

@@ -1,0 +1,49 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#14b8a6",
+    "textureFile": {
+      "type": "texture",
+      "name": "image.png",
+      "url": "assets/image.png"
+    },
+    "hdrFile": {
+      "type": "hdr",
+      "name": "sky.hdr",
+      "url": "asset://sky.hdr"
+    },
+    "audioFile": {
+      "type": "audio",
+      "name": "t-rex-roar.mp3",
+      "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
+    },
+    "avatarFile": {
+      "type": "avatar",
+      "name": "avatar.vrm",
+      "url": "asset://avatar.vrm"
+    },
+    "emoteFile": {
+      "type": "emote",
+      "name": "emote-talk.glb",
+      "url": "asset://emote-talk.glb"
+    },
+    "modelFile": {
+      "type": "model",
+      "name": "Model.glb",
+      "url": "asset://Model.glb"
+    }
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}

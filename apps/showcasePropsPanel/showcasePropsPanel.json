@@ -1,0 +1,30 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "title": "Props Panel",
+    "message": "Drive the exhibit from the app inspector.",
+    "columns": 4,
+    "glow": 0.8,
+    "showBeacon": true,
+    "shape": "sphere",
+    "accent": "#14b8a6",
+    "texture": {
+      "type": "image",
+      "name": "image.png",
+      "url": "assets/image.png"
+    }
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}
