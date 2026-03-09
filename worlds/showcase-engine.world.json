@@ -913,6 +913,29 @@
       "pinned": true,
       "props": {},
       "state": {}
+    },
+    {
+      "id": "showcaseLod",
+      "blueprint": "showcaseLOD",
+      "position": [
+        30,
+        0,
+        504
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }

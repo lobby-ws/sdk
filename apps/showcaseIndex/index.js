@@ -239,6 +239,13 @@ const STATIONS = [
     targetPosition: [30, 1, 460],
     accent: '#14b8a6',
   },
+  {
+    title: 'LOD',
+    description: 'Distance cutoffs and scaleAware switching.',
+    position: [13.5, 0, 97],
+    targetPosition: [30, 1, 496],
+    accent: '#22c55e',
+  },
 ]
 
 export default (world, app) => {
