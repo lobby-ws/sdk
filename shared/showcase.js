@@ -359,17 +359,10 @@ export function addTeleportStation({
   const group = app.create('group')
   setPosition(group, position)
 
-  addPedestal(app, group, {
-    size: [2.8, 0.56, 2.8],
-    accent,
-    color: '#1c232c',
-    topColor: '#293542',
-  })
-
   const ring = app.create('prim', {
     type: 'cylinder',
     size: [1.18, 1.18, 0.12],
-    position: [0, 0.67, 0],
+    position: [0, 0.06, 0],
     color: '#0d1116',
     roughness: 0.32,
     metalness: 0.4,
