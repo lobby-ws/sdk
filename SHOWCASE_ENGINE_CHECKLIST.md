@@ -63,12 +63,12 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 ## System And SDK
 
 - [x] `showcasePropsPanel`
-- [ ] `showcaseWorldLoad`
-- [ ] `showcaseModelTraversal`
+- [x] `showcaseWorldLoad`
+- [x] `showcaseModelTraversal`
 - [ ] `showcaseAppState`
 - [ ] `showcaseSendVsEmit`
 - [ ] `showcaseLateJoinSync`
-- [ ] `showcaseWorldEvents`
+- [x] `showcaseWorldEvents`
 - [ ] `showcaseWorldStorage`
 - [ ] `showcaseLinksAndQueryParams`
 - [ ] `showcaseFileKinds`

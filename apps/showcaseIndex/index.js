@@ -197,6 +197,27 @@ const STATIONS = [
     targetPosition: [0, 1, 388],
     accent: '#38bdf8',
   },
+  {
+    title: 'World Load',
+    description: 'Load model, avatar, and splat roots at runtime.',
+    position: [-13.5, 0, 88],
+    targetPosition: [-30, 1, 424],
+    accent: '#0ea5e9',
+  },
+  {
+    title: 'Traversal',
+    description: 'Inspect and modify a loaded model tree.',
+    position: [-4.5, 0, 88],
+    targetPosition: [0, 1, 424],
+    accent: '#14b8a6',
+  },
+  {
+    title: 'World Events',
+    description: 'enter, leave, avatarLoaded, and player snapshots.',
+    position: [4.5, 0, 88],
+    targetPosition: [30, 1, 424],
+    accent: '#f97316',
+  },
 ]
 
 export default (world, app) => {

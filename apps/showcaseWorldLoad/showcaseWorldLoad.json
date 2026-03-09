@@ -1,0 +1,29 @@
+{
+  "scriptFormat": "module",
+  "image": null,
+  "author": null,
+  "url": null,
+  "desc": null,
+  "model": "assets/Model.glb",
+  "props": {
+    "accentColor": "#0ea5e9",
+    "modelFile": {
+      "type": "model",
+      "name": "Model.glb",
+      "url": "asset://Model.glb"
+    },
+    "avatarFile": {
+      "type": "avatar",
+      "name": "avatar.vrm",
+      "url": "asset://avatar.vrm"
+    }
+  },
+  "preload": true,
+  "public": false,
+  "locked": false,
+  "frozen": false,
+  "unique": true,
+  "keep": true,
+  "scene": false,
+  "disabled": false
+}
