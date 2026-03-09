@@ -8,6 +8,8 @@
   "props": {
     "accentColor": "#0ea5e9",
     "imageFile": {
+      "type": "image",
+      "name": "image.png",
       "url": "assets/image.png"
     },
     "surfaceWidth": 2.4,

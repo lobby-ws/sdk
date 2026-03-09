@@ -8,6 +8,8 @@
   "props": {
     "accentColor": "#14b8a6",
     "imageFile": {
+      "type": "image",
+      "name": "image.png",
       "url": "assets/image.png"
     },
     "showSecondaryCard": true,

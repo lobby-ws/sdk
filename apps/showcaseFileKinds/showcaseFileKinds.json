@@ -10,7 +10,7 @@
     "textureFile": {
       "type": "texture",
       "name": "image.png",
-      "url": "asset://image.png"
+      "url": "assets/image.png"
     },
     "hdrFile": {
       "type": "hdr",
