@@ -7,22 +7,20 @@ import {
   withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
-const DEFAULT_IMAGE_URL = 'assets/image.png'
-
 export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
   app.configure(withShowcaseActivationMode([
     { key: 'accentColor', type: 'color', label: 'Accent', initial: '#0ea5e9' },
-    { key: 'imageFile', type: 'file', kind: 'texture', label: 'Override Image' },
+    { key: 'imageFile', type: 'file', kind: 'image', label: 'Override Image' },
     { key: 'surfaceWidth', type: 'range', label: 'Surface Width', min: 1.2, max: 3.4, step: 0.1, initial: 2.4 },
     { key: 'surfaceHeight', type: 'range', label: 'Surface Height', min: 0.8, max: 2.4, step: 0.1, initial: 1.6 },
     { key: 'castImageShadows', type: 'toggle', label: 'Cast Image Shadows', initial: true },
   ]))
 
   const accent = props.accentColor || '#0ea5e9'
-  const src = resolveFileUrl(props.imageFile, DEFAULT_IMAGE_URL)
+  const src = resolveFileUrl(props.imageFile)
   const width = num(props.surfaceWidth, 2.4)
   const height = num(props.surfaceHeight, 1.6)
   const castShadows = props.castImageShadows !== false

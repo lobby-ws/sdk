@@ -7,15 +7,13 @@ import {
   withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
-const DEFAULT_IMAGE_URL = 'assets/image.png'
-
 export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
   app.configure(withShowcaseActivationMode([
     { key: 'accentColor', type: 'color', label: 'Accent', initial: '#14b8a6' },
-    { key: 'imageFile', type: 'file', kind: 'texture', label: 'Card Image' },
+    { key: 'imageFile', type: 'file', kind: 'image', label: 'Card Image' },
     { key: 'showSecondaryCard', type: 'toggle', label: 'Show Secondary Card', initial: true },
     {
       key: 'fitMode',
@@ -69,7 +67,7 @@ export default (world, app, fetch, props) => {
     accent,
     title: 'Inventory Card',
     subtitle: 'Hero card layout',
-    imageUrl: resolveFileUrl(props.imageFile, DEFAULT_IMAGE_URL),
+    imageUrl: resolveFileUrl(props.imageFile),
     fitMode: props.fitMode || 'cover',
   }))
 

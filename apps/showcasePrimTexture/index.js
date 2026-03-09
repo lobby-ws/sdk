@@ -77,17 +77,6 @@ const DEFAULT_SECONDARY_TEXTURE = svgDataUrl(`
   </svg>
 `)
 
-const DEFAULT_ALPHA_TEXTURE = svgDataUrl(`
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-    <rect width="256" height="256" fill="transparent"/>
-    <g fill="#ffffff">
-      <circle cx="72" cy="86" r="42"/>
-      <rect x="112" y="42" width="98" height="88" rx="18"/>
-      <path d="M 48 182 L 128 128 L 208 182 L 184 226 L 72 226 Z"/>
-    </g>
-  </svg>
-`)
-
 const DEFAULT_RUNTIME_SPEC = 'runtime:checker?size=256&cells=10&speed=2&a=ffcc00&b=111111'
 
 export default (world, app, fetch, props) => {
@@ -98,7 +87,6 @@ export default (world, app, fetch, props) => {
     { key: 'texturesSection', type: 'section', label: 'Textures' },
     { key: 'primaryTexture', type: 'file', kind: 'texture', label: 'Primary Texture' },
     { key: 'secondaryTexture', type: 'file', kind: 'texture', label: 'Secondary Texture' },
-    { key: 'alphaTexture', type: 'file', kind: 'texture', label: 'Alpha Texture' },
     {
       key: 'runtimeSpec',
       type: 'text',
@@ -122,9 +110,9 @@ export default (world, app, fetch, props) => {
     { key: 'uvSection', type: 'section', label: 'UV Offsets' },
     { key: 'scrollSpeedX', type: 'range', label: 'Scroll Speed X', min: -2, max: 2, step: 0.05, initial: 0.35 },
     { key: 'scrollSpeedY', type: 'range', label: 'Scroll Speed Y', min: -2, max: 2, step: 0.05, initial: 0.12 },
-    { key: 'alphaSection', type: 'section', label: 'Alpha Modes' },
-    { key: 'blendOpacity', type: 'range', label: 'Blend Opacity', min: 0, max: 1, step: 0.05, initial: 0.6 },
-    { key: 'alphaCutoff', type: 'range', label: 'Cutout Threshold', min: 0, max: 1, step: 0.05, initial: 0.45 },
+    { key: 'tilingSection', type: 'section', label: 'Texture Tiling' },
+    { key: 'tileRepeatX', type: 'range', label: 'Tile Repeat X', min: 1, max: 8, step: 0.5, initial: 2 },
+    { key: 'tileRepeatY', type: 'range', label: 'Tile Repeat Y', min: 1, max: 8, step: 0.5, initial: 2 },
     { key: 'runtimeSection', type: 'section', label: 'Runtime Swap' },
     { key: 'animateSwap', type: 'toggle', label: 'Animate Swap', initial: true },
     { key: 'swapSeconds', type: 'number', label: 'Swap Interval (s)', min: 0, max: 30, step: 0.25, initial: 2.5 },
@@ -133,7 +121,6 @@ export default (world, app, fetch, props) => {
   const accent = props.accentColor || '#d946ef'
   const primaryTexture = resolveFileUrl(props.primaryTexture, DEFAULT_PRIMARY_TEXTURE)
   const secondaryTexture = resolveFileUrl(props.secondaryTexture, DEFAULT_SECONDARY_TEXTURE)
-  const alphaTexture = resolveFileUrl(props.alphaTexture, DEFAULT_ALPHA_TEXTURE)
   const sharedTexture = props.useSecondaryAsBase ? secondaryTexture : primaryTexture
   const runtimeSpec =
     typeof props.runtimeSpec === 'string' && props.runtimeSpec.trim().startsWith('runtime:')
@@ -149,8 +136,8 @@ export default (world, app, fetch, props) => {
   const sharedCopies = clampInt(props.sharedCopies, 4, 24, 10)
   const scrollSpeedX = clampNumber(props.scrollSpeedX, -2, 2, 0.35)
   const scrollSpeedY = clampNumber(props.scrollSpeedY, -2, 2, 0.12)
-  const blendOpacity = clampNumber(props.blendOpacity, 0, 1, 0.6)
-  const alphaCutoff = clampNumber(props.alphaCutoff, 0, 1, 0.45)
+  const tileRepeatX = clampNumber(props.tileRepeatX, 1, 8, 2)
+  const tileRepeatY = clampNumber(props.tileRepeatY, 1, 8, 2)
   const animateSwap = !!props.animateSwap
   const swapSeconds = clampNumber(props.swapSeconds, 0, 30, 2.5)
 
@@ -182,8 +169,8 @@ export default (world, app, fetch, props) => {
     height: 220,
     title: 'Prim Texture Showcase',
     lines: [
-      'One exhibit for material tint, shared-texture instancing, UV scrolling, alpha modes, and runtime texture swaps.',
-      'Click the runtime cube to toggle between the shared texture and the runtime texture source.',
+      'One exhibit for material tint, shared-texture instancing, UV scrolling, texture tiling, and runtime texture swaps.',
+      'Click the runtime cube to toggle between the shared texture and the runtime texture source; the tiling lane follows the same active texture.',
       'Edit: apps/showcasePrimTexture/index.js',
     ],
     accent,
@@ -192,7 +179,7 @@ export default (world, app, fetch, props) => {
 
   addSectionLabel(app, root, [-4.5, 0.34, 1.95], 'Shared Row', 'These boxes share one material + texture until a texture override breaks batching.', accent)
   addSectionLabel(app, root, [-4.2, 2.72, -0.8], 'UV Scroll', 'textureX and textureY shift every frame on this plane.', '#38bdf8')
-  addSectionLabel(app, root, [0.9, 2.72, -0.8], 'Alpha Modes', 'Opaque, blend, and cutout use the same alpha texture.', '#fb7185')
+  addSectionLabel(app, root, [0.9, 2.72, -0.8], 'Texture Tiling', 'Left stays 1x1. Center and right increase textureRepeat while following the runtime cube texture.', '#fb7185')
   addSectionLabel(app, root, [4.3, 2.4, -0.8], 'Runtime Swap', 'Runtime spec support is optional; the cube still swaps locally.', '#f59e0b')
 
   const ground = app.create('prim', {
@@ -279,46 +266,45 @@ export default (world, app, fetch, props) => {
   })
   root.add(uvScroller)
 
-  const alphaOpaque = app.create('prim', {
+  const tileSource = app.create('prim', {
     type: 'plane',
     size: [1.3, 1.3],
     position: [-0.4, 1.55, -0.2],
     rotation: [0, Math.PI, 0],
-    texture: alphaTexture,
-    alphaMode: 'opaque',
+    texture: runtimeTexture,
+    textureRepeat: [1, 1],
     opacity: 1,
     doubleside: true,
     metalness: 0,
     roughness: 1,
   })
-  const alphaBlend = app.create('prim', {
+  const tileMain = app.create('prim', {
     type: 'plane',
     size: [1.3, 1.3],
     position: [1.2, 1.55, -0.2],
     rotation: [0, Math.PI, 0],
-    texture: alphaTexture,
-    alphaMode: 'blend',
-    opacity: blendOpacity,
-    doubleside: true,
-    metalness: 0,
-    roughness: 1,
-  })
-  const alphaCutout = app.create('prim', {
-    type: 'plane',
-    size: [1.3, 1.3],
-    position: [2.8, 1.55, -0.2],
-    rotation: [0, Math.PI, 0],
-    texture: alphaTexture,
-    alphaMode: 'cutout',
-    alphaCutoff,
+    texture: runtimeTexture,
+    textureRepeat: [tileRepeatX, tileRepeatY],
     opacity: 1,
     doubleside: true,
     metalness: 0,
     roughness: 1,
   })
-  root.add(alphaOpaque)
-  root.add(alphaBlend)
-  root.add(alphaCutout)
+  const tileDense = app.create('prim', {
+    type: 'plane',
+    size: [1.3, 1.3],
+    position: [2.8, 1.55, -0.2],
+    rotation: [0, Math.PI, 0],
+    texture: runtimeTexture,
+    textureRepeat: [tileRepeatX * 2, tileRepeatY * 2],
+    opacity: 1,
+    doubleside: true,
+    metalness: 0,
+    roughness: 1,
+  })
+  root.add(tileSource)
+  root.add(tileMain)
+  root.add(tileDense)
 
   const runtimeBox = app.create('prim', {
     type: 'box',
@@ -330,11 +316,10 @@ export default (world, app, fetch, props) => {
     roughness,
     opacity,
     doubleside,
-    alphaMode: 'cutout',
-    alphaCutoff,
   })
   runtimeBox.onPointerDown = () => {
     runtimeBox.texture = runtimeBox.texture === runtimeTexture ? sharedTexture : runtimeTexture
+    syncTilingTextures()
   }
   runtimeBox.onPointerEnter = () => {
     runtimeBox.emissive = '#6ee7ff'
@@ -363,6 +348,7 @@ export default (world, app, fetch, props) => {
   let time = 0
   let usingRuntimeTexture = true
   let statusTimer = 0
+  let activeTilingTexture = runtimeBox.texture
 
   const onUpdate = delta => {
     time += delta
@@ -375,9 +361,9 @@ export default (world, app, fetch, props) => {
     uvScroller.textureX += delta * scrollSpeedX
     uvScroller.textureY += delta * scrollSpeedY
 
-    alphaOpaque.rotation.y = Math.sin(time * 0.6) * 0.1
-    alphaBlend.rotation.y = Math.sin(time * 0.8) * 0.22
-    alphaCutout.rotation.y = Math.sin(time) * 0.32
+    tileSource.rotation.y = Math.sin(time * 0.6) * 0.1
+    tileMain.rotation.y = Math.sin(time * 0.8) * 0.22
+    tileDense.rotation.y = Math.sin(time) * 0.32
 
     for (let i = 0; i < sharedRow.length; i += 1) {
       sharedRow[i].rotation.y = Math.sin(time + i * 0.3) * 0.18
@@ -389,8 +375,11 @@ export default (world, app, fetch, props) => {
         elapsed = 0
         usingRuntimeTexture = !usingRuntimeTexture
         runtimeBox.texture = usingRuntimeTexture ? runtimeTexture : sharedTexture
+        syncTilingTextures()
       }
     }
+
+    syncTilingTextures()
 
     statusTimer += delta
     if (statusText && statusTimer >= 0.15) {
@@ -405,6 +394,15 @@ export default (world, app, fetch, props) => {
   }
 
   bindAreaHotEvent(app, area, 'update', onUpdate)
+
+  function syncTilingTextures() {
+    const nextTexture = runtimeBox.texture
+    if (nextTexture === activeTilingTexture) return
+    activeTilingTexture = nextTexture
+    tileSource.texture = nextTexture
+    tileMain.texture = nextTexture
+    tileDense.texture = nextTexture
+  }
 }
 
 function addSectionLabel(app, root, position, title, line, accent) {

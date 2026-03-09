@@ -19,7 +19,7 @@
     "animatePoint": true,
     "orbitSpeed": 0.75
   },
-  "preload": false,
+  "preload": true,
   "public": false,
   "locked": false,
   "frozen": false,

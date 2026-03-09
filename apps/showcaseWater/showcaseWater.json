@@ -16,7 +16,7 @@
     "reflectivity": 0.42,
     "textureSize": 256
   },
-  "preload": false,
+  "preload": true,
   "public": false,
   "locked": false,
   "frozen": false,

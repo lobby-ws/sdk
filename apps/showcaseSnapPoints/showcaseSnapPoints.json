@@ -11,7 +11,7 @@
     "variant": "straight",
     "accentColor": "#34d399"
   },
-  "preload": false,
+  "preload": true,
   "public": false,
   "locked": false,
   "frozen": false,
