@@ -736,6 +736,52 @@
       "pinned": true,
       "props": {},
       "state": {}
+    },
+    {
+      "id": "showcaseSky",
+      "blueprint": "showcaseSkyModes",
+      "position": [
+        -24,
+        0,
+        280
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseFog",
+      "blueprint": "showcaseFogCorridor",
+      "position": [
+        0,
+        0,
+        280
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }

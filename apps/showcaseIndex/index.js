@@ -183,6 +183,20 @@ const STATIONS = [
     targetPosition: [0, 1, 244],
     accent: '#38bdf8',
   },
+  {
+    title: 'Sky Modes',
+    description: 'Texture, shader, and remounted sky priority.',
+    position: [-13.5, 0, 70],
+    targetPosition: [-24, 1, 272],
+    accent: '#38bdf8',
+  },
+  {
+    title: 'Fog Corridor',
+    description: 'Read fogNear, fogFar, and fogColor in depth.',
+    position: [-4.5, 0, 70],
+    targetPosition: [0, 1, 272],
+    accent: '#22c55e',
+  },
 ]
 
 export default (world, app) => {
@@ -194,7 +208,7 @@ export default (world, app) => {
 
   addCheckerFloor(app, root, {
     width: 34,
-    depth: 144,
+    depth: 176,
     tileSize: 4,
     colorA: '#10161d',
     colorB: '#17222d',
