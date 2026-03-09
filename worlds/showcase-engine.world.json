@@ -54,7 +54,7 @@
       "position": [
         0,
         0,
-        28
+        36
       ],
       "quaternion": [
         0,
@@ -98,9 +98,9 @@
       "id": "showcaseLgt",
       "blueprint": "showcaseLighting",
       "position": [
-        -24,
+        -30,
         0,
-        28
+        36
       ],
       "quaternion": [
         0,
@@ -121,9 +121,9 @@
       "id": "snapGuide",
       "blueprint": "showcaseSnapPoints",
       "position": [
-        24,
+        30,
         0,
-        28
+        36
       ],
       "quaternion": [
         0,
@@ -149,9 +149,9 @@
       "id": "snapStrt2",
       "blueprint": "showcaseSnapPoints",
       "position": [
-        31,
+        38,
         0,
-        28
+        36
       ],
       "quaternion": [
         0,
@@ -177,9 +177,9 @@
       "id": "snapCornr",
       "blueprint": "showcaseSnapPoints",
       "position": [
-        24,
+        30,
         0,
-        36
+        44
       ],
       "quaternion": [
         0,
@@ -207,7 +207,7 @@
       "position": [
         0,
         0,
-        56
+        72
       ],
       "quaternion": [
         0,
@@ -228,9 +228,9 @@
       "id": "primTexture",
       "blueprint": "showcasePrimTexture",
       "position": [
-        -18,
+        -30,
         0,
-        56
+        72
       ],
       "quaternion": [
         0,
@@ -251,9 +251,9 @@
       "id": "showcaseAct",
       "blueprint": "showcaseActions",
       "position": [
-        -24,
+        -30,
         0,
-        84
+        108
       ],
       "quaternion": [
         0,
@@ -276,7 +276,7 @@
       "position": [
         0,
         0,
-        84
+        108
       ],
       "quaternion": [
         0,
@@ -297,9 +297,9 @@
       "id": "showcasePrt",
       "blueprint": "showcaseParticles",
       "position": [
-        24,
+        30,
         0,
-        84
+        108
       ],
       "quaternion": [
         0,
@@ -320,9 +320,9 @@
       "id": "showcaseUiW",
       "blueprint": "showcaseUIWorld",
       "position": [
-        -24,
+        -30,
         0,
-        112
+        144
       ],
       "quaternion": [
         0,
@@ -345,7 +345,7 @@
       "position": [
         0,
         0,
-        112
+        144
       ],
       "quaternion": [
         0,
@@ -366,9 +366,9 @@
       "id": "showcaseRgd",
       "blueprint": "showcaseRigidBodies",
       "position": [
-        24,
+        30,
         0,
-        112
+        144
       ],
       "quaternion": [
         0,
@@ -389,9 +389,9 @@
       "id": "showcaseJnt",
       "blueprint": "showcaseJoints",
       "position": [
-        -24,
+        -30,
         0,
-        140
+        180
       ],
       "quaternion": [
         0,
@@ -414,7 +414,7 @@
       "position": [
         0,
         0,
-        140
+        180
       ],
       "quaternion": [
         0,
@@ -435,9 +435,9 @@
       "id": "showcaseUiS",
       "blueprint": "showcaseUIScreen",
       "position": [
-        24,
+        30,
         0,
-        140
+        180
       ],
       "quaternion": [
         0,
@@ -458,9 +458,9 @@
       "id": "showcaseUiC",
       "blueprint": "showcaseUIComponents",
       "position": [
-        -24,
+        -30,
         0,
-        168
+        216
       ],
       "quaternion": [
         0,
@@ -483,7 +483,7 @@
       "position": [
         0,
         0,
-        168
+        216
       ],
       "quaternion": [
         0,
@@ -504,9 +504,9 @@
       "id": "showcaseWvw",
       "blueprint": "showcaseWebViewWorld",
       "position": [
-        24,
+        30,
         0,
-        168
+        216
       ],
       "quaternion": [
         0,
@@ -527,9 +527,9 @@
       "id": "showcaseWvs",
       "blueprint": "showcaseWebViewScreen",
       "position": [
-        -24,
+        -30,
         0,
-        196
+        252
       ],
       "quaternion": [
         0,
@@ -552,7 +552,7 @@
       "position": [
         0,
         0,
-        196
+        252
       ],
       "quaternion": [
         0,
@@ -573,9 +573,9 @@
       "id": "showcaseCol",
       "blueprint": "showcaseColliders",
       "position": [
-        24,
+        30,
         0,
-        196
+        252
       ],
       "quaternion": [
         0,
@@ -596,9 +596,9 @@
       "id": "showcaseTnc",
       "blueprint": "showcaseTriggersAndContacts",
       "position": [
-        -24,
+        -30,
         0,
-        224
+        288
       ],
       "quaternion": [
         0,
@@ -621,7 +621,7 @@
       "position": [
         0,
         0,
-        224
+        288
       ],
       "quaternion": [
         0,
@@ -642,9 +642,9 @@
       "id": "showcaseRay",
       "blueprint": "showcaseRaycast",
       "position": [
-        24,
+        30,
         0,
-        224
+        288
       ],
       "quaternion": [
         0,
@@ -665,9 +665,9 @@
       "id": "showcasePtr",
       "blueprint": "showcasePointerEvents",
       "position": [
-        -24,
+        -30,
         0,
-        252
+        324
       ],
       "quaternion": [
         0,
@@ -690,7 +690,7 @@
       "position": [
         0,
         0,
-        252
+        324
       ],
       "quaternion": [
         0,
@@ -711,9 +711,9 @@
       "id": "showcasePrm",
       "blueprint": "showcasePrims",
       "position": [
-        24,
+        30,
         0,
-        280
+        360
       ],
       "quaternion": [
         0,
@@ -734,9 +734,9 @@
       "id": "showcaseImg",
       "blueprint": "showcaseImageSurfaces",
       "position": [
-        -24,
+        -30,
         0,
-        308
+        396
       ],
       "quaternion": [
         0,
@@ -759,7 +759,7 @@
       "position": [
         0,
         0,
-        308
+        396
       ],
       "quaternion": [
         0,
