@@ -106,6 +106,7 @@ function buildFitWall(app, root, src, width, height) {
         height,
         fit: spec.fit,
         position: [spec.x, 2.0, 3.86],
+        rotation: [0, Math.PI, 0],
         color: spec.fit === 'contain' ? '#0f172a' : 'transparent',
         lit: false,
         doubleside: true,
@@ -114,7 +115,7 @@ function buildFitWall(app, root, src, width, height) {
       })
     )
     addInfoPanel(app, root, {
-      position: [spec.x, 0.4, 5.35],
+      position: [spec.x, 0.4, 2.55],
       width: 210,
       height: 86,
       title: spec.fit,
@@ -167,6 +168,7 @@ function buildLightingCard(app, root, src, castShadows) {
       height: 2.2,
       fit: 'cover',
       position: [-2.4, 2.0, 0.2],
+      rotation: [0, Math.PI, 0],
       lit: true,
       doubleside: true,
       castShadow: castShadows,
@@ -174,7 +176,7 @@ function buildLightingCard(app, root, src, castShadows) {
     })
   )
   addInfoPanel(app, root, {
-    position: [-2.4, 0.44, 1.95],
+    position: [-2.4, 0.44, -1.15],
     width: 220,
     height: 92,
     title: 'Lit Surface',
@@ -201,7 +203,7 @@ function buildBackfaceCard(app, root, src) {
       height: 2.1,
       fit: 'contain',
       position: [2.8, 1.95, 0.3],
-      rotation: [0, Math.PI, 0],
+      rotation: [0, 0, 0],
       color: 'transparent',
       lit: false,
       doubleside: true,
@@ -210,7 +212,7 @@ function buildBackfaceCard(app, root, src) {
     })
   )
   addInfoPanel(app, root, {
-    position: [2.8, 0.44, 1.95],
+    position: [2.8, 0.44, -1.15],
     width: 240,
     height: 92,
     title: 'Back Face',

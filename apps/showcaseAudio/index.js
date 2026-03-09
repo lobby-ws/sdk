@@ -246,7 +246,7 @@ function createStatusPanel(app, root) {
     height: 86,
     size: 0.004,
     pivot: 'bottom-center',
-    position: [0, 0.32, 4.8],
+    position: [0, 0.32, -2.8],
     backgroundColor: 'rgba(8, 12, 16, 0.9)',
     borderWidth: 4,
     borderColor: '#22c55e',

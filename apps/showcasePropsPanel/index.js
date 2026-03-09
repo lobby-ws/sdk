@@ -145,7 +145,7 @@ export default (world, app, fetch, props) => {
     height: 170,
     size: 0.0042,
     pivot: 'bottom-center',
-    position: [0, 0.34, 4.85],
+    position: [0, 0.34, -2.85],
     backgroundColor: 'rgba(8, 12, 16, 0.92)',
     borderWidth: 4,
     borderColor: accent,

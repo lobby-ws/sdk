@@ -190,7 +190,7 @@ export default (world, app, fetch, props) => {
     size: 0.0041,
   })
 
-  addSectionLabel(app, root, [-4.5, 0.34, 3.75], 'Shared Row', 'These boxes share one material + texture until a texture override breaks batching.', accent)
+  addSectionLabel(app, root, [-4.5, 0.34, 1.95], 'Shared Row', 'These boxes share one material + texture until a texture override breaks batching.', accent)
   addSectionLabel(app, root, [-4.2, 2.72, -0.8], 'UV Scroll', 'textureX and textureY shift every frame on this plane.', '#38bdf8')
   addSectionLabel(app, root, [0.9, 2.72, -0.8], 'Alpha Modes', 'Opaque, blend, and cutout use the same alpha texture.', '#fb7185')
   addSectionLabel(app, root, [4.3, 2.4, -0.8], 'Runtime Swap', 'Runtime spec support is optional; the cube still swaps locally.', '#f59e0b')
@@ -268,7 +268,7 @@ export default (world, app, fetch, props) => {
     type: 'plane',
     size: [2.4, 2.1],
     position: [-4.1, 1.65, -0.05],
-    rotation: [0, 0.22, 0],
+    rotation: [0, Math.PI + 0.22, 0],
     texture: sharedTexture,
     textureX: 0,
     textureY: 0,
@@ -283,6 +283,7 @@ export default (world, app, fetch, props) => {
     type: 'plane',
     size: [1.3, 1.3],
     position: [-0.4, 1.55, -0.2],
+    rotation: [0, Math.PI, 0],
     texture: alphaTexture,
     alphaMode: 'opaque',
     opacity: 1,
@@ -294,6 +295,7 @@ export default (world, app, fetch, props) => {
     type: 'plane',
     size: [1.3, 1.3],
     position: [1.2, 1.55, -0.2],
+    rotation: [0, Math.PI, 0],
     texture: alphaTexture,
     alphaMode: 'blend',
     opacity: blendOpacity,
@@ -305,6 +307,7 @@ export default (world, app, fetch, props) => {
     type: 'plane',
     size: [1.3, 1.3],
     position: [2.8, 1.55, -0.2],
+    rotation: [0, Math.PI, 0],
     texture: alphaTexture,
     alphaMode: 'cutout',
     alphaCutoff,

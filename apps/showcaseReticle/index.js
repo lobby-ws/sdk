@@ -177,7 +177,7 @@ function buildTargetWall(app, display, accent) {
   )
 
   addInfoPanel(app, display, {
-    position: [0, 0.34, 5.35],
+    position: [0, 0.34, 3.05],
     width: 420,
     height: 108,
     title: 'Aim Board',
@@ -313,7 +313,7 @@ function createStatusPanel(app, display, accent) {
     height: 118,
     size: 0.004,
     pivot: 'bottom-center',
-    position: [0, 0.32, 5.15],
+    position: [0, 0.32, -2.7],
     backgroundColor: 'rgba(8, 12, 16, 0.9)',
     borderWidth: 4,
     borderColor: accent,

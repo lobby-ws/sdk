@@ -134,7 +134,7 @@ function createLogPanel(app, root, accent) {
     width: 460,
     height: 112,
     size: 0.0044,
-    position: [0, 0.34, 4.85],
+    position: [0, 0.34, -2.85],
     pivot: 'bottom-center',
     backgroundColor: 'rgba(8, 12, 16, 0.9)',
     borderWidth: 4,

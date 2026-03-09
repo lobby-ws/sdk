@@ -143,12 +143,16 @@ export default (world, app, fetch, props) => {
 }
 
 function buildScreen(app, root, { position, width, height, rotationY, fit, volume }) {
+  const actualRotationY = Math.PI + rotationY
+  const offsetX = Math.sin(actualRotationY) * 0.09
+  const offsetZ = Math.cos(actualRotationY) * 0.09
+
   root.add(
     app.create('prim', {
       type: 'box',
       size: [width + 0.32, height + 0.32, 0.16],
       position,
-      rotation: [0, rotationY, 0],
+      rotation: [0, actualRotationY, 0],
       color: '#0f172a',
       roughness: 0.24,
       metalness: 0.12,
@@ -162,8 +166,8 @@ function buildScreen(app, root, { position, width, height, rotationY, fit, volum
     linked: LINK_ID,
     width,
     height,
-    position: [position[0], position[1], position[2] + 0.1],
-    rotation: [0, rotationY, 0],
+    position: [position[0] + offsetX, position[1], position[2] + offsetZ],
+    rotation: [0, actualRotationY, 0],
     fit,
     lit: false,
     doubleside: false,
@@ -217,7 +221,7 @@ function createStatusPanel(app, root) {
     height: 84,
     size: 0.004,
     pivot: 'bottom-center',
-    position: [0, 0.32, 4.9],
+    position: [0, 0.32, -2.8],
     backgroundColor: 'rgba(8, 12, 16, 0.9)',
     borderWidth: 4,
     borderColor: '#ef4444',

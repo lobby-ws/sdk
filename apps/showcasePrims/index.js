@@ -125,7 +125,7 @@ export default (world, app, fetch, props) => {
     { type: 'cylinder', size: [0.5, 0.5, 1.3], position: [1.1, 1.18, 0.9], title: 'Cylinder', line: 'caps + barrel' },
     { type: 'cone', size: [0.64, 1.4], position: [4.3, 1.22, 0.9], title: 'Cone', line: 'tapered volume' },
     { type: 'torus', size: [0.58, 0.18], position: [-1.4, 1.15, 3.45], title: 'Torus', line: 'ring geometry' },
-    { type: 'plane', size: [1.8, 1.3], position: [2.8, 1.34, 3.4], rotation: [-0.22, 0.45, 0], title: 'Plane', line: 'flat surface' },
+    { type: 'plane', size: [1.8, 1.3], position: [2.8, 1.34, 3.4], rotation: [-0.22, Math.PI + 0.45, 0], title: 'Plane', line: 'flat surface' },
   ]
 
   for (const spec of specs) {
@@ -258,7 +258,7 @@ function createStatusPanel(app, root, accent) {
     height: 86,
     size: 0.004,
     pivot: 'bottom-center',
-    position: [0, 0.32, 5.15],
+    position: [0, 0.32, -2.7],
     backgroundColor: 'rgba(8, 12, 16, 0.9)',
     borderWidth: 4,
     borderColor: accent,

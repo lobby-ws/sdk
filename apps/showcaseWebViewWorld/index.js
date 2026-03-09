@@ -74,6 +74,7 @@ export default (world, app, fetch, props) => {
       doubleside: props.doubleside === true,
       pointerEvents: props.pointerEvents !== false,
       position: [0, 2.35, 0.92],
+      rotation: [0, Math.PI, 0],
     })
   )
 
@@ -81,7 +82,7 @@ export default (world, app, fetch, props) => {
     app.create('prim', {
       type: 'box',
       size: [2.2, 0.16, 0.28],
-      position: [0, 2.15, 1.02],
+      position: [0, 2.15, 0.72],
       color: '#e0f2fe',
       emissive: accent,
       emissiveIntensity: 0.35,
