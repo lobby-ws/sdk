@@ -184,20 +184,6 @@ const STATIONS = [
     accent: '#38bdf8',
   },
   {
-    title: 'Sky Modes',
-    description: 'Texture, shader, and remounted sky priority.',
-    position: [-13.5, 0, 70],
-    targetPosition: [-24, 1, 272],
-    accent: '#38bdf8',
-  },
-  {
-    title: 'Fog Corridor',
-    description: 'Read fogNear, fogFar, and fogColor in depth.',
-    position: [-4.5, 0, 70],
-    targetPosition: [0, 1, 272],
-    accent: '#22c55e',
-  },
-  {
     title: 'Prims',
     description: 'All primitive types with material presets.',
     position: [4.5, 0, 70],

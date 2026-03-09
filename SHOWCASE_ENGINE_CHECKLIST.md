@@ -14,8 +14,6 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 
 ## Rendering
 
-- [x] `showcaseSkyModes`
-- [x] `showcaseFogCorridor`
 - [x] `showcasePrims`
 - [x] `showcaseImageSurfaces`
 - [x] `showcaseMirror`
