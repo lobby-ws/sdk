@@ -782,6 +782,75 @@
       "pinned": true,
       "props": {},
       "state": {}
+    },
+    {
+      "id": "showcasePrm",
+      "blueprint": "showcasePrims",
+      "position": [
+        24,
+        0,
+        280
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseImg",
+      "blueprint": "showcaseImageSurfaces",
+      "position": [
+        -24,
+        0,
+        308
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseMir",
+      "blueprint": "showcaseMirror",
+      "position": [
+        0,
+        0,
+        308
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }

@@ -197,6 +197,27 @@ const STATIONS = [
     targetPosition: [0, 1, 272],
     accent: '#22c55e',
   },
+  {
+    title: 'Prims',
+    description: 'All primitive types with material presets.',
+    position: [4.5, 0, 70],
+    targetPosition: [24, 1, 272],
+    accent: '#14b8a6',
+  },
+  {
+    title: 'Image Surfaces',
+    description: 'Fit modes, lit images, and doubleside.',
+    position: [13.5, 0, 70],
+    targetPosition: [-24, 1, 300],
+    accent: '#0ea5e9',
+  },
+  {
+    title: 'Mirror',
+    description: 'Planar reflections and resolution tradeoffs.',
+    position: [0, 0, 79],
+    targetPosition: [0, 1, 300],
+    accent: '#38bdf8',
+  },
 ]
 
 export default (world, app) => {
