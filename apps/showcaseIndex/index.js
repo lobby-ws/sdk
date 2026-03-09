@@ -1,5 +1,9 @@
 import { addCheckerFloor, addInfoPanel, addPedestal, addTeleportStation, hidePlaceholder } from '@shared/showcase.js'
 
+const HUB_COLUMNS = [-13.5, -4.5, 4.5, 13.5]
+const HUB_START_Z = 7
+const HUB_ROW_GAP = 9
+
 const STATIONS = [
   {
     title: 'Environment',
@@ -243,17 +247,28 @@ const STATIONS = [
     title: 'LOD',
     description: 'Distance cutoffs and scaleAware switching.',
     position: [13.5, 0, 97],
-    targetPosition: [30, 1, 496],
+    targetPosition: [0, 1, 496],
     accent: '#22c55e',
   },
   {
     title: 'Ragdoll Gun',
     description: 'Raycast hits trigger ragdolls and per-bone pushes.',
-    position: [-13.5, 0, 106],
     targetPosition: [0, 1, 532],
     accent: '#ef4444',
   },
 ]
+
+const POSITIONED_STATIONS = STATIONS.map((station, index) => ({
+  ...station,
+  position: [
+    HUB_COLUMNS[index % HUB_COLUMNS.length],
+    0,
+    HUB_START_Z + Math.floor(index / HUB_COLUMNS.length) * HUB_ROW_GAP,
+  ],
+}))
+
+const HUB_LAST_ROW_Z = POSITIONED_STATIONS[POSITIONED_STATIONS.length - 1]?.position?.[2] || HUB_START_Z
+const HUB_FLOOR_DEPTH = Math.max(176, HUB_LAST_ROW_Z * 2 + 22)
 
 export default (world, app) => {
   app.keepActive = true
@@ -264,7 +279,7 @@ export default (world, app) => {
 
   addCheckerFloor(app, root, {
     width: 34,
-    depth: 176,
+    depth: HUB_FLOOR_DEPTH,
     tileSize: 4,
     colorA: '#10161d',
     colorB: '#17222d',
@@ -293,7 +308,7 @@ export default (world, app) => {
     size: 0.0043,
   })
 
-  for (const station of STATIONS) {
+  for (const station of POSITIONED_STATIONS) {
     addTeleportStation({
       app,
       world,
