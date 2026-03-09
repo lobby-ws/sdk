@@ -38,9 +38,9 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 ## Interaction And Players
 
 - [x] `showcaseActions`
-- [ ] `showcasePointerEvents`
+- [x] `showcasePointerEvents`
 - [ ] `showcaseControlAndCamera`
-- [ ] `showcaseReticle`
+- [x] `showcaseReticle`
 - [ ] `showcaseAvatarAndEmotes`
 - [ ] `showcaseBoneAttachments`
 - [ ] `showcaseNametags`

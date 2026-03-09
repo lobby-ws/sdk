@@ -169,6 +169,20 @@ const STATIONS = [
     targetPosition: [24, 1, 216],
     accent: '#38bdf8',
   },
+  {
+    title: 'Pointer Events',
+    description: 'Hover, click, bubbling, and stopPropagation.',
+    position: [-13.5, 0, 61],
+    targetPosition: [-24, 1, 244],
+    accent: '#f97316',
+  },
+  {
+    title: 'Reticle',
+    description: 'Custom screen reticles with gated activation.',
+    position: [-4.5, 0, 61],
+    targetPosition: [0, 1, 244],
+    accent: '#38bdf8',
+  },
 ]
 
 export default (world, app) => {

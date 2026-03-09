@@ -690,6 +690,52 @@
       "pinned": true,
       "props": {},
       "state": {}
+    },
+    {
+      "id": "showcasePtr",
+      "blueprint": "showcasePointerEvents",
+      "position": [
+        -24,
+        0,
+        252
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseRet",
+      "blueprint": "showcaseReticle",
+      "position": [
+        0,
+        0,
+        252
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }
