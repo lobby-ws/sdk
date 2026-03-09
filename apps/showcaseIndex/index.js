@@ -30,18 +30,11 @@ const STATIONS = [
     accent: '#22d3ee',
   },
   {
-    title: 'Texture Demo',
-    description: 'Material inputs, instancing, and runtime swaps.',
-    position: [-13.5, 0, 16],
+    title: 'Prim Textures',
+    description: 'Material inputs, alpha modes, UV offsets, and runtime textures.',
+    position: [-9, 0, 16],
     targetPosition: [-18, 1, 48],
-    accent: '#c084fc',
-  },
-  {
-    title: 'Texture Showcase',
-    description: 'Alpha modes, UV offsets, and runtime textures.',
-    position: [-4.5, 0, 16],
-    targetPosition: [18, 1, 48],
-    accent: '#fb7185',
+    accent: '#d946ef',
   },
   {
     title: 'Actions',

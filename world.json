@@ -225,8 +225,8 @@
       "state": {}
     },
     {
-      "id": "textureDemo",
-      "blueprint": "primTextureDemo",
+      "id": "primTexture",
+      "blueprint": "showcasePrimTexture",
       "position": [
         -18,
         0,
@@ -244,37 +244,7 @@
         1
       ],
       "pinned": true,
-      "props": {
-        "sameTextureCopies": 12,
-        "swapSeconds": 1.5
-      },
-      "state": {}
-    },
-    {
-      "id": "textureShow",
-      "blueprint": "primTextureShowcase",
-      "position": [
-        18,
-        0,
-        56
-      ],
-      "quaternion": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "scale": [
-        1,
-        1,
-        1
-      ],
-      "pinned": true,
-      "props": {
-        "sharedCopies": 12,
-        "scrollSpeedX": 0.45,
-        "scrollSpeedY": 0.18
-      },
+      "props": {},
       "state": {}
     },
     {

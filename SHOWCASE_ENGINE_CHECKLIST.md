@@ -9,8 +9,7 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 - [x] `showcaseLighting`
 - [x] `showcaseSnapPoints`
 - [x] `showcaseWater`
-- [x] `primTextureDemo`
-- [x] `primTextureShowcase`
+- [x] `showcasePrimTexture`
 
 ## Rendering
 
