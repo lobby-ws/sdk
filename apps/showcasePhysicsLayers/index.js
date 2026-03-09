@@ -123,9 +123,9 @@ export default (world, app, fetch, props) => {
     onTrigger: () => {
       for (const lane of lanes) {
         resetLane(lane)
-        lane.projectile.body.addForce(new Vector3(launchForce, 0, 0))
+        lane.projectile.body.setLinearVelocity(new Vector3(launchForce, 0, 0))
       }
-      syncLaneSummary(status, lanes, `All three lanes launched with force ${launchForce.toFixed(0)}.`)
+      syncLaneSummary(status, lanes, `All three lanes launched at velocity ${launchForce.toFixed(0)}.`)
     },
   })
 }
