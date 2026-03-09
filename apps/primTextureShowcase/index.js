@@ -1,9 +1,15 @@
-import { addInfoPanel, bindAreaHotEvent, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addInfoPanel,
+  bindAreaHotEvent,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props, setTimeout) => {
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     {
       key: 'texturesSection',
       type: 'section',
@@ -96,7 +102,7 @@ export default (world, app, fetch, props, setTimeout) => {
       step: 0.05,
       initial: 0.45,
     },
-  ])
+  ]))
 
   const DEFAULT_SHARED_TEXTURE = 'https://threejs.org/examples/textures/uv_grid_opengl.jpg'
   const DEFAULT_ALT_TEXTURE = 'https://threejs.org/examples/textures/brick_diffuse.jpg'
@@ -120,6 +126,7 @@ export default (world, app, fetch, props, setTimeout) => {
   const runtimeTexture = runtimeEnabled ? runtimeSpec : altTexture
 
   const area = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
     size: [16, 8, 14],
   })
   const { root } = area

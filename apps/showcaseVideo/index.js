@@ -5,6 +5,7 @@ import {
   bindAreaHotEvent,
   createShowcaseArea,
   hidePlaceholder,
+  withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
 const VIDEO_SRC = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
@@ -13,7 +14,7 @@ export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     {
       key: 'fit',
       type: 'switch',
@@ -29,9 +30,11 @@ export default (world, app, fetch, props) => {
     { key: 'doubleside', type: 'toggle', label: 'Double Sided', initial: true },
     { key: 'volume', type: 'range', label: 'Volume', min: 0, max: 1, step: 0.05, initial: 0.5 },
     { key: 'loop', type: 'toggle', label: 'Loop', initial: true },
-  ])
+  ]))
 
-  const area = createShowcaseArea(world, app)
+  const area = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
   const { root } = area
   const status = createStatusPanel(app, root)
   const fit = props.fit || 'contain'

@@ -1,10 +1,17 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'accentColor', type: 'color', label: 'Accent Color', initial: '#38bdf8' },
     { key: 'showBadge', type: 'toggle', label: 'Show Hover Badge', initial: true },
     {
@@ -19,10 +26,12 @@ export default (world, app, fetch, props) => {
       initial: 'y',
     },
     { key: 'cardScale', type: 'range', label: 'Base Scale', min: 0.006, max: 0.02, step: 0.001, initial: 0.01 },
-  ])
+  ]))
 
   const accent = props.accentColor || '#38bdf8'
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
 
   addCheckerFloor(app, root, {
     width: 18,

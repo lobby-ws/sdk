@@ -6,6 +6,7 @@
   "desc": null,
   "model": "assets/Model.glb",
   "props": {
+    "activationMode": "gated",
     "accentColor": "#2563eb",
     "pointerEvents": true,
     "width": 420,

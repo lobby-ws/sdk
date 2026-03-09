@@ -1,18 +1,27 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'accentColor', type: 'color', label: 'Accent', initial: '#38bdf8' },
     { key: 'showPrompt', type: 'toggle', label: 'Show Prompt', initial: true },
     { key: 'safeMargin', type: 'range', label: 'Safe Margin', min: 12, max: 72, step: 2, initial: 28 },
-  ])
+  ]))
 
   const accent = props.accentColor || '#38bdf8'
   const margin = num(props.safeMargin, 28)
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
 
   addCheckerFloor(app, root, {
     width: 18,

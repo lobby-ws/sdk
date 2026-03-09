@@ -1,4 +1,11 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 const CARD_ART = svgDataUrl(`
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
@@ -21,7 +28,7 @@ export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'accentColor', type: 'color', label: 'Accent', initial: '#14b8a6' },
     { key: 'showSecondaryCard', type: 'toggle', label: 'Show Secondary Card', initial: true },
     {
@@ -35,10 +42,12 @@ export default (world, app, fetch, props) => {
       ],
       initial: 'cover',
     },
-  ])
+  ]))
 
   const accent = props.accentColor || '#14b8a6'
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
 
   addCheckerFloor(app, root, {
     width: 18,

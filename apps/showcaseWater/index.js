@@ -1,9 +1,9 @@
-import { addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import { addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder, withShowcaseActivationMode } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'width', type: 'number', label: 'Water Width', min: 4, max: 40, step: 1, initial: 14 },
     { key: 'height', type: 'number', label: 'Water Depth', min: 4, max: 40, step: 1, initial: 10 },
     { key: 'color', type: 'color', label: 'Water Color', initial: '#083344' },
@@ -13,9 +13,11 @@ export default (world, app, fetch, props) => {
     { key: 'alpha', type: 'range', label: 'Alpha', min: 0, max: 1, step: 0.05, initial: 0.9 },
     { key: 'reflectivity', type: 'range', label: 'Reflectivity', min: 0, max: 1, step: 0.05, initial: 0.42 },
     { key: 'textureSize', type: 'number', label: 'Reflection Size', min: 64, max: 1024, step: 64, initial: 256 },
-  ])
+  ]))
 
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
 
   addPedestal(app, root, {
     position: [0, 0, -6.2],

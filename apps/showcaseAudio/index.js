@@ -1,4 +1,11 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 const AUDIO_SRC = 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3'
 
@@ -6,14 +13,16 @@ export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'masterVolume', type: 'range', label: 'Master Volume', min: 0, max: 1, step: 0.05, initial: 0.65 },
     { key: 'speakerDistance', type: 'range', label: 'Spatial Distance', min: 3, max: 20, step: 0.5, initial: 11 },
     { key: 'speakerRolloff', type: 'range', label: 'Rolloff', min: 0.5, max: 5, step: 0.1, initial: 2.6 },
     { key: 'ambientEnabled', type: 'toggle', label: 'Start Ambient Loop', initial: false },
-  ])
+  ]))
 
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
   const status = createStatusPanel(app, root)
   const volume = num(props.masterVolume, 0.65)
   const distance = num(props.speakerDistance, 11)

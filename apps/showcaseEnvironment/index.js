@@ -5,6 +5,7 @@ import {
   bindAreaHotEvent,
   createShowcaseArea,
   hidePlaceholder,
+  withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
 const SKY_SHADER = `
@@ -27,7 +28,7 @@ export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'skySection', type: 'section', label: 'Sky' },
     { key: 'skyTexture', type: 'file', kind: 'texture', label: 'Background Texture' },
     { key: 'hdrTexture', type: 'file', kind: 'hdr', label: 'HDR Lighting' },
@@ -47,9 +48,11 @@ export default (world, app, fetch, props) => {
     { key: 'fogColor', type: 'color', label: 'Fog Color', initial: '#89a7c7' },
     { key: 'fogNear', type: 'number', label: 'Fog Near', min: 0, step: 1, initial: 18 },
     { key: 'fogFar', type: 'number', label: 'Fog Far', min: 1, step: 1, initial: 54 },
-  ])
+  ]))
 
-  const area = createShowcaseArea(world, app)
+  const area = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
   const { root } = area
   const sky = app.create('sky')
 

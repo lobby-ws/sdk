@@ -1,17 +1,26 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'fountainRate', type: 'range', label: 'Fountain Rate', min: 0, max: 120, step: 1, initial: 70 },
     { key: 'smokeRate', type: 'range', label: 'Smoke Rate', min: 0, max: 60, step: 1, initial: 22 },
     { key: 'sparkPower', type: 'range', label: 'Burst Power', min: 0.2, max: 2, step: 0.1, initial: 1 },
     { key: 'ambientEnabled', type: 'toggle', label: 'Ambient Emitters', initial: true },
-  ])
+  ]))
 
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
   const status = createStatusPanel(app, root)
   const ambientEnabled = props.ambientEnabled !== false
   const sparkPower = num(props.sparkPower, 1)

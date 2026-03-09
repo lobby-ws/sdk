@@ -1,18 +1,27 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'accentColor', type: 'color', label: 'Accent Color', initial: '#f97316' },
     { key: 'quickDuration', type: 'range', label: 'Quick Hold', min: 0.05, max: 1, step: 0.05, initial: 0.15 },
     { key: 'holdDuration', type: 'range', label: 'Long Hold', min: 0.15, max: 2, step: 0.05, initial: 0.9 },
     { key: 'cancelDuration', type: 'range', label: 'Cancel Window', min: 0.3, max: 3, step: 0.1, initial: 1.6 },
-  ])
+  ]))
 
   const accent = props.accentColor || '#f97316'
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
   const scoreboard = createScoreboard(app, root, accent)
   const state = {
     quickToggles: 0,

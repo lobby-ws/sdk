@@ -5,12 +5,13 @@ import {
   bindAreaHotEvent,
   createShowcaseArea,
   hidePlaceholder,
+  withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'directionalSection', type: 'section', label: 'Directional Light' },
     { key: 'dirIntensity', type: 'range', label: 'Directional Intensity', min: 0, max: 3, step: 0.05, initial: 1.2 },
     { key: 'dirColor', type: 'color', label: 'Directional Color', initial: '#fff2c6' },
@@ -26,9 +27,11 @@ export default (world, app, fetch, props) => {
     { key: 'spotPenumbra', type: 'range', label: 'Spot Penumbra', min: 0, max: 1, step: 0.05, initial: 0.35 },
     { key: 'spotColor', type: 'color', label: 'Spot Color', initial: '#fda4af' },
     { key: 'castShadow', type: 'toggle', label: 'Cast Shadows', initial: false },
-  ])
+  ]))
 
-  const area = createShowcaseArea(world, app)
+  const area = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
   const { root } = area
 
   addCheckerFloor(app, root, {

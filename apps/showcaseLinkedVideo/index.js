@@ -5,6 +5,7 @@ import {
   bindAreaHotEvent,
   createShowcaseArea,
   hidePlaceholder,
+  withShowcaseActivationMode,
 } from '@shared/showcase.js'
 
 const VIDEO_SRC = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
@@ -14,7 +15,7 @@ export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     {
       key: 'fit',
       type: 'switch',
@@ -28,11 +29,13 @@ export default (world, app, fetch, props) => {
     },
     { key: 'volume', type: 'range', label: 'Lead Volume', min: 0, max: 1, step: 0.05, initial: 0.45 },
     { key: 'seekSeconds', type: 'range', label: 'Jump Time', min: 0, max: 10, step: 0.5, initial: 4 },
-  ])
+  ]))
 
   const fit = props.fit || 'cover'
   const leadVolume = num(props.volume, 0.45)
-  const area = createShowcaseArea(world, app)
+  const area = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
   const { root } = area
 
   addCheckerFloor(app, root, {

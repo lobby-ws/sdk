@@ -1,9 +1,9 @@
-import { addInfoPanel, addMarker, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import { addInfoPanel, addMarker, createShowcaseArea, hidePlaceholder, withShowcaseActivationMode } from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'label', type: 'text', label: 'Label', initial: 'Snap Piece' },
     { key: 'showGuide', type: 'toggle', label: 'Show Guide Panel', initial: true },
     {
@@ -17,9 +17,11 @@ export default (world, app, fetch, props) => {
       initial: 'straight',
     },
     { key: 'accentColor', type: 'color', label: 'Accent Color', initial: '#34d399' },
-  ])
+  ]))
 
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
 
   const accent = props.accentColor || '#34d399'
   const variant = props.variant === 'corner' ? 'corner' : 'straight'

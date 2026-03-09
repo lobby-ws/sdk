@@ -9,51 +9,80 @@ export function hidePlaceholder(app) {
   if (block) block.active = false
 }
 
+export function withShowcaseActivationMode(fields, options = {}) {
+  const initial = options.initial === 'gated' ? 'gated' : 'always'
+  return [
+    {
+      key: 'activationSection',
+      type: 'section',
+      label: options.sectionLabel || 'Activation',
+    },
+    {
+      key: 'activationMode',
+      type: 'switch',
+      label: 'Showcase Mode',
+      options: [
+        { label: 'Always Active', value: 'always' },
+        { label: 'Area Gated', value: 'gated' },
+      ],
+      initial,
+    },
+    ...fields,
+  ]
+}
+
 export function createShowcaseArea(world, app, options = {}) {
   app.keepActive = true
 
+  const activationMode = options.activationMode === 'gated' ? 'gated' : 'always'
   const size = vector3Or(options.size, [20, 8, 18])
   const center = vector3Or(options.center, [0, size[1] / 2, 0])
   const shell = app.create('group')
   const root = app.create('group')
   const listeners = new Set()
   const occupants = new Set()
-  let active = false
+  let active = activationMode === 'always'
 
-  root.active = false
+  root.active = active
   shell.add(root)
+  let zone = null
 
-  const zone = app.create('prim', {
-    type: 'box',
-    size,
-    position: center,
-    color: '#ffffff',
-    opacity: 0,
-    transparent: true,
-    physics: 'static',
-    trigger: true,
-    castShadow: false,
-    receiveShadow: false,
-  })
+  if (activationMode === 'gated') {
+    zone = app.create('prim', {
+      type: 'box',
+      size,
+      position: center,
+      color: '#ffffff',
+      opacity: 0,
+      transparent: true,
+      physics: 'static',
+      trigger: true,
+      castShadow: false,
+      receiveShadow: false,
+    })
 
-  zone.onTriggerEnter = event => {
-    const key = getOccupantKey(world, event)
-    if (!key) return
-    occupants.add(key)
-    setActive(true)
+    zone.onTriggerEnter = event => {
+      const key = getOccupantKey(world, event)
+      if (!key) return
+      occupants.add(key)
+      setActive(true)
+    }
+
+    zone.onTriggerLeave = event => {
+      const key = getOccupantKey(world, event)
+      if (!key) return
+      occupants.delete(key)
+      setActive(occupants.size > 0)
+    }
+
+    shell.add(zone)
   }
 
-  zone.onTriggerLeave = event => {
-    const key = getOccupantKey(world, event)
-    if (!key) return
-    occupants.delete(key)
-    setActive(occupants.size > 0)
-  }
-
-  shell.add(zone)
   app.add(shell)
 
-  syncOccupants()
+  if (activationMode === 'gated') {
+    syncOccupants()
+  }
 
   return {
     shell,

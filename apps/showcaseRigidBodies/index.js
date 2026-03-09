@@ -1,16 +1,25 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
   hidePlaceholder(app)
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'motionSpeed', type: 'range', label: 'Kinematic Speed', min: 0, max: 3, step: 0.05, initial: 1.1 },
     { key: 'launchForce', type: 'range', label: 'Launch Force', min: 4, max: 24, step: 1, initial: 12 },
     { key: 'stackHeight', type: 'number', label: 'Stack Count', min: 2, max: 6, step: 1, initial: 4 },
-  ])
+  ]))
 
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
 
   addCheckerFloor(app, root, {
     width: 18,

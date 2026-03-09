@@ -1,4 +1,11 @@
-import { addCheckerFloor, addInfoPanel, addPedestal, createShowcaseArea, hidePlaceholder } from '@shared/showcase.js'
+import {
+  addCheckerFloor,
+  addInfoPanel,
+  addPedestal,
+  createShowcaseArea,
+  hidePlaceholder,
+  withShowcaseActivationMode,
+} from '@shared/showcase.js'
 
 export default (world, app, fetch, props) => {
   app.keepActive = true
@@ -8,7 +15,7 @@ export default (world, app, fetch, props) => {
   let preview = null
   let summary = null
 
-  app.configure([
+  app.configure(withShowcaseActivationMode([
     { key: 'title', type: 'text', label: 'Title', initial: 'Props Panel' },
     {
       key: 'message',
@@ -47,10 +54,12 @@ export default (world, app, fetch, props) => {
         }
       },
     },
-  ])
+  ]))
 
   const accent = props.accent || '#14b8a6'
-  const { root } = createShowcaseArea(world, app)
+  const { root } = createShowcaseArea(world, app, {
+    activationMode: props.activationMode,
+  })
 
   addCheckerFloor(app, root, {
     width: 18,
