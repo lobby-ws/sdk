@@ -19,11 +19,11 @@ export default (world, app, fetch, props) => {
   ]))
 
   const accent = props.accentColor || '#2563eb'
-  const { root } = createShowcaseArea(world, app, {
+  const { display, root } = createShowcaseArea(world, app, {
     activationMode: props.activationMode,
   })
 
-  addCheckerFloor(app, root, {
+  addCheckerFloor(app, display, {
     width: 18,
     depth: 14,
     tileSize: 2,
@@ -31,14 +31,14 @@ export default (world, app, fetch, props) => {
     colorB: '#18232d',
   })
 
-  addPedestal(app, root, {
+  addPedestal(app, display, {
     position: [0, 0, 1.1],
     size: [8.2, 0.52, 4],
     accent,
     color: '#1f2730',
   })
 
-  addInfoPanel(app, root, {
+  addInfoPanel(app, display, {
     position: [0, 0.76, -5.3],
     width: 560,
     height: 212,

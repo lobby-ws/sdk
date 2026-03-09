@@ -38,11 +38,13 @@ export function createShowcaseArea(world, app, options = {}) {
   const size = vector3Or(options.size, [20, 8, 18])
   const center = vector3Or(options.center, [0, size[1] / 2, 0])
   const shell = app.create('group')
+  const display = app.create('group')
   const root = app.create('group')
   const listeners = new Set()
   const occupants = new Set()
   let active = activationMode === 'always'
 
+  shell.add(display)
   root.active = active
   shell.add(root)
   let zone = null
@@ -86,6 +88,7 @@ export function createShowcaseArea(world, app, options = {}) {
 
   return {
     shell,
+    display,
     root,
     zone,
     isActive: () => active,
