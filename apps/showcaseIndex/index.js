@@ -141,6 +141,34 @@ const STATIONS = [
     targetPosition: [0, 1, 188],
     accent: '#ef4444',
   },
+  {
+    title: 'Colliders',
+    description: 'Render meshes versus the simpler physics proxy.',
+    position: [-13.5, 0, 52],
+    targetPosition: [24, 1, 188],
+    accent: '#06b6d4',
+  },
+  {
+    title: 'Triggers',
+    description: 'Overlap events and rigidbody contact callbacks.',
+    position: [-4.5, 0, 52],
+    targetPosition: [-24, 1, 216],
+    accent: '#22c55e',
+  },
+  {
+    title: 'Physics Layers',
+    description: 'Collision filters for environment, prop, and tool.',
+    position: [4.5, 0, 52],
+    targetPosition: [0, 1, 216],
+    accent: '#8b5cf6',
+  },
+  {
+    title: 'Raycast',
+    description: 'Layer masks and hit inspection from one lane.',
+    position: [13.5, 0, 52],
+    targetPosition: [24, 1, 216],
+    accent: '#38bdf8',
+  },
 ]
 
 export default (world, app) => {
@@ -152,7 +180,7 @@ export default (world, app) => {
 
   addCheckerFloor(app, root, {
     width: 34,
-    depth: 96,
+    depth: 144,
     tileSize: 4,
     colorA: '#10161d',
     colorB: '#17222d',

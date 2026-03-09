@@ -27,12 +27,12 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 ## Physics
 
 - [x] `showcaseRigidBodies`
-- [ ] `showcaseColliders`
-- [ ] `showcaseTriggersAndContacts`
+- [x] `showcaseColliders`
+- [x] `showcaseTriggersAndContacts`
 - [x] `showcaseJoints`
 - [ ] `showcaseControllers`
-- [ ] `showcasePhysicsLayers`
-- [ ] `showcaseRaycast`
+- [x] `showcasePhysicsLayers`
+- [x] `showcaseRaycast`
 - [ ] `showcaseRagdollGun`
 
 ## Interaction And Players

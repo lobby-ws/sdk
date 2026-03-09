@@ -598,6 +598,98 @@
       "pinned": true,
       "props": {},
       "state": {}
+    },
+    {
+      "id": "showcaseCol",
+      "blueprint": "showcaseColliders",
+      "position": [
+        24,
+        0,
+        196
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseTnc",
+      "blueprint": "showcaseTriggersAndContacts",
+      "position": [
+        -24,
+        0,
+        224
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcasePly",
+      "blueprint": "showcasePhysicsLayers",
+      "position": [
+        0,
+        0,
+        224
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseRay",
+      "blueprint": "showcaseRaycast",
+      "position": [
+        24,
+        0,
+        224
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }

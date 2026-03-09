@@ -2,6 +2,7 @@ import {
   addCheckerFloor,
   addInfoPanel,
   addPedestal,
+  bindAreaHotEvent,
   createShowcaseArea,
   hidePlaceholder,
   withShowcaseActivationMode,
@@ -17,9 +18,10 @@ export default (world, app, fetch, props) => {
     { key: 'stackHeight', type: 'number', label: 'Stack Count', min: 2, max: 6, step: 1, initial: 4 },
   ]))
 
-  const { root } = createShowcaseArea(world, app, {
+  const area = createShowcaseArea(world, app, {
     activationMode: props.activationMode,
   })
+  const { root } = area
 
   addCheckerFloor(app, root, {
     width: 18,
@@ -84,8 +86,7 @@ export default (world, app, fetch, props) => {
     nextPosition.x += Math.sin(elapsed * speed) * 1.8
     mover.body.setKinematicTarget(nextPosition, mover.body.quaternion)
   }
-  app.on('fixedUpdate', onFixedUpdate)
-  app.on('destroy', () => app.off('fixedUpdate', onFixedUpdate))
+  bindAreaHotEvent(app, area, 'fixedUpdate', onFixedUpdate)
 }
 
 function buildStaticRamp(app, root) {
