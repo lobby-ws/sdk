@@ -69,9 +69,9 @@ This file tracks the combined zoo/museum backlog for `worlds/showcase-engine.wor
 - [ ] `showcaseSendVsEmit`
 - [ ] `showcaseLateJoinSync`
 - [x] `showcaseWorldEvents`
-- [ ] `showcaseWorldStorage`
-- [ ] `showcaseLinksAndQueryParams`
-- [ ] `showcaseFileKinds`
+- [x] `showcaseWorldStorage`
+- [x] `showcaseLinksAndQueryParams`
+- [x] `showcaseFileKinds`
 
 ## Docs Gaps
 

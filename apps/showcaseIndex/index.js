@@ -218,6 +218,27 @@ const STATIONS = [
     targetPosition: [30, 1, 424],
     accent: '#f97316',
   },
+  {
+    title: 'Links',
+    description: 'world.open plus query-string read/write APIs.',
+    position: [-13.5, 0, 97],
+    targetPosition: [-30, 1, 460],
+    accent: '#2563eb',
+  },
+  {
+    title: 'File Kinds',
+    description: 'Texture, HDR, audio, avatar, emote, and model props.',
+    position: [-4.5, 0, 97],
+    targetPosition: [0, 1, 460],
+    accent: '#14b8a6',
+  },
+  {
+    title: 'World Storage',
+    description: 'Server-persisted JSON with client sync.',
+    position: [4.5, 0, 97],
+    targetPosition: [30, 1, 460],
+    accent: '#14b8a6',
+  },
 ]
 
 export default (world, app) => {

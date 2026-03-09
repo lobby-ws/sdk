@@ -844,6 +844,75 @@
       "pinned": true,
       "props": {},
       "state": {}
+    },
+    {
+      "id": "showcaseLqp",
+      "blueprint": "showcaseLinksAndQueryParams",
+      "position": [
+        -30,
+        0,
+        468
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseFky",
+      "blueprint": "showcaseFileKinds",
+      "position": [
+        0,
+        0,
+        468
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
+    },
+    {
+      "id": "showcaseSto",
+      "blueprint": "showcaseWorldStorage",
+      "position": [
+        30,
+        0,
+        468
+      ],
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "pinned": true,
+      "props": {},
+      "state": {}
     }
   ]
 }
