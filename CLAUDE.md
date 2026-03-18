@@ -1,3 +1,48 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+Lobby WS SDK is a world template for building Hyperfy-based virtual worlds, deployed via Fly.io. Apps are JavaScript modules in `apps/`, built and deployed with the `gamedev` CLI.
+
+**Tech Stack:** Node.js 22.11.0, Hyperfy engine (via `gamedev` npm package), Fly.io
+
+## Common Commands
+
+```bash
+npm run dev                                    # Start local dev server with hot reload
+npm run build                                  # Build all apps
+npm run deploy:fly                             # First-time deploy to Fly.io (interactive)
+npm run deploy:app -- <AppName> --target <app> # Deploy a single app to a live world
+npm run update:engine                          # Redeploy latest engine image to Fly
+npm run dev -- --target <app>                  # Live sync local changes to a remote world
+```
+
+See [docs/deployment.md](docs/deployment.md) for full deployment instructions and env var reference.
+
+## Project Structure
+
+```
+apps/          - World apps (each has blueprint JSON + index.js script)
+assets/        - Shared assets referenced by blueprints or file props
+shared/        - Shared JS modules, imported via @shared/... or shared/...
+scripts/       - Deployment scripts (fly-deploy.sh, update-engine.sh)
+docs/          - Scripting API reference and deployment guide
+.lobby/        - Local world data and deploy targets (gitignored except targets.example.json)
+world.json     - World state (entities, settings, spawn point)
+```
+
+## App Development
+
+Each app in `apps/<Name>/` contains:
+- `<Name>.json` — blueprint (model, props, scriptFormat, defaults)
+- `index.js` — script entry (`export default (world, app, fetch, props, setTimeout) => {}`)
+
+Scripts run in isolated compartments on both server and client. Use `world.isServer` / `world.isClient` to branch. See `docs/scripting/README.md` for the full API.
+
+---
+
 # Docs
 
 Project docs are copied into `docs/` on init. Start with `docs/scripting/README.md`.
